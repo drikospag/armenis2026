@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Αρμενία 2026 · 21–27 Μαρτίου</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════════════ */
+:root{
+  --red:     #7C1515;
+  --red-lt:  #f5e8e8;
+  --gold:    #B8820A;
+  --gold-lt: #FDF3DC;
+  --ink:     #1A1210;
+  --body:    #3A3028;
+  --muted:   #78706A;
+  --line:    #E5DDD5;
+  --bg:      #F9F7F4;
+  --white:   #FFFFFF;
+  --warm:    #F3EDE4;
+  --blue:    #1A5C8B;
+  --blue-lt: #EAF3FA;
+  --green:   #1A6B3A;
+  --green-lt:#E8F5EE;
+  --purple:  #5C2D8B;
+  --purple-lt:#F0EAF8;
+  --orange:  #B85A0A;
+  --orange-lt:#FDF0E5;
+  --r: 1rem;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-text-size-adjust:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+img{display:block;width:100%}
+
+/* ═══════════════════════════════════════════════════
+   COVER / HERO — full bleed Armenia gradient
+═══════════════════════════════════════════════════ */
+.cover{
+  background: linear-gradient(155deg, #3B0A0A 0%, #7C1515 35%, #B8820A 70%, #3B0A0A 100%);
+  color:white;
+  padding: 2.5rem 1.5rem 3rem;
+  position:relative;
+  overflow:hidden;
+  min-height: 320px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.cover::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(184,130,10,.35) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(124,21,21,.5) 0%, transparent 60%);
+}
+.cover-deco{
+  position:absolute;
+  top:-30px; right:-30px;
+  width:220px; height:220px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(184,130,10,.25) 0%, transparent 70%);
+}
+.cover-flag{
+  display:flex;
+  width:42px; height:26px;
+  border-radius:3px;
+  overflow:hidden;
+  margin-bottom:1rem;
+  box-shadow:0 2px 10px rgba(0,0,0,.4);
+  position:relative;z-index:1;
+}
+.cover-flag div{flex:1}
+.fr{background:#D90012}.fb{background:#0033A0}.fo{background:#F2A800}
+.cover-eyebrow{
+  font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-bottom:.5rem;
+  position:relative;z-index:1;
+}
+.cover-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.6rem, 8vw, 4.5rem);
+  font-weight:700;line-height:.95;
+  letter-spacing:-.03em;
+  position:relative;z-index:1;
+  margin-bottom:.5rem;
+}
+.cover-title em{font-style:italic;color:#E8B45A}
+.cover-sub{
+  font-size:.8rem;color:rgba(255,255,255,.65);
+  position:relative;z-index:1;margin-bottom:1.5rem;
+}
+/* Stats row */
+.cover-stats{
+  display:flex;gap:1.5rem;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+.cs{border-left:2px solid rgba(184,130,10,.6);padding-left:.8rem}
+.cs-n{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;line-height:1;color:white}
+.cs-l{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.15rem}
+
+/* ═══════════════════════════════════════════════════
+   TRAVELER CHIPS (below cover)
+═══════════════════════════════════════════════════ */
+.travelers-strip{
+  background:var(--white);
+  border-bottom:1px solid var(--line);
+  padding:.75rem 1.25rem;
+  display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
+}
+.travelers-lbl{
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);flex-shrink:0;
+}
+.couple-pill{
+  display:flex;align-items:center;gap:.45rem;
+  background:var(--warm);border:1px solid var(--line);
+  border-radius:100px;padding:.3rem .75rem .3rem .4rem;
+}
+.av-stack{display:flex}
+.av{
+  width:26px;height:26px;border-radius:50%;
+  border:2px solid white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.68rem;font-weight:700;color:white;flex-shrink:0;
+}
+.av+.av{margin-left:-7px}
+.av-red{background:linear-gradient(135deg,#8B1A1A,#C05030)}
+.av-blue{background:linear-gradient(135deg,#1A5C8B,#2E86C1)}
+.pill-heart{font-size:.65rem;color:#e05c7a}
+.pill-names{font-size:.75rem;font-weight:700;color:var(--ink)}
+.strip-divider{width:1px;height:24px;background:var(--line);flex-shrink:0;display:none}
+@media(min-width:600px){.strip-divider{display:block}}
+.trip-info{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--body)}
+.trip-info strong{color:var(--ink)}
+
+/* ═══════════════════════════════════════════════════
+   STICKY NAV
+═══════════════════════════════════════════════════ */
+.sticky-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.sticky-nav-inner{
+  display:flex;align-items:center;gap:0;
+  overflow-x:auto;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.sticky-nav-inner::-webkit-scrollbar{display:none}
+.snav-btn{
+  flex-shrink:0;
+  padding:.7rem .9rem;
+  font-size:.7rem;font-weight:600;
+  color:var(--muted);background:none;border:none;
+  border-bottom:2px solid transparent;
+  letter-spacing:.02em;white-space:nowrap;
+  transition:all .15s;
+}
+.snav-btn:hover{color:var(--red)}
+.snav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* ═══════════════════════════════════════════════════
+   LAYOUT WRAPPER
+═══════════════════════════════════════════════════ */
+.page{max-width:720px;margin:0 auto;padding:0 1rem}
+@media(min-width:768px){.page{padding:0 1.5rem}}
+
+/* ═══════════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════════ */
+.sec{padding:2rem 0 .5rem}
+.sec-tag{
+  display:inline-block;
+  background:var(--red-lt);border:1px solid rgba(124,21,21,.15);
+  border-radius:100px;padding:.2rem .7rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--red);margin-bottom:.5rem;
+}
+.sec-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.5rem,5vw,2.2rem);
+  font-weight:700;color:var(--ink);
+  line-height:1.1;letter-spacing:-.02em;margin-bottom:.4rem;
+}
+.sec-title em{font-style:italic;color:var(--red)}
+.sec-sub{font-size:.82rem;color:var(--muted);line-height:1.6}
+.divider{height:1px;background:var(--line);margin:0}
+
+/* ═══════════════════════════════════════════════════
+   OVERVIEW GRID
+═══════════════════════════════════════════════════ */
+.ov-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.6rem;margin-top:1.2rem;
+}
+@media(min-width:480px){.ov-grid{grid-template-columns:repeat(3,1fr)}}
+.ov-card{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:1rem;
+}
+.ov-icon{font-size:1.3rem;margin-bottom:.4rem}
+.ov-label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.ov-val{font-size:.88rem;font-weight:700;color:var(--ink);line-height:1.2}
+.ov-sub{font-size:.65rem;color:var(--muted);margin-top:.15rem}
+
+/* ═══════════════════════════════════════════════════
+   WEATHER ROW
+═══════════════════════════════════════════════════ */
+.weather-row{
+  display:flex;gap:.5rem;margin-top:1.2rem;
+  overflow-x:auto;padding-bottom:.5rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.weather-row::-webkit-scrollbar{display:none}
+.wcard{
+  flex-shrink:0;width:78px;
+  background:var(--white);border:1px solid var(--line);
+  border-radius:10px;padding:.7rem .4rem;text-align:center;
+}
+.wc-d{font-size:.58rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.wc-i{font-size:1.3rem;margin:.25rem 0}
+.wc-h{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--ink)}
+.wc-l{font-size:.6rem;color:var(--muted)}
+.wc-note{font-size:.55rem;color:var(--muted);margin-top:.25rem;line-height:1.2}
+
+/* ═══════════════════════════════════════════════════
+   AIRBNB BLOCK
+═══════════════════════════════════════════════════ */
+.ab-block{
+  background:var(--white);border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;margin-top:1.2rem;
+}
+.ab-top{
+  background:linear-gradient(135deg,#E04E54,#FF7478);
+  padding:1.1rem 1.2rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.ab-top-icon{font-size:1.5rem;flex-shrink:0}
+.ab-top-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:700;color:white}
+.ab-top-sub{font-size:.65rem;color:rgba(255,255,255,.8);margin-top:.1rem}
+.ab-badge{
+  margin-left:auto;flex-shrink:0;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);
+  border-radius:100px;padding:.2rem .65rem;
+  font-size:.62rem;font-weight:700;color:white;white-space:nowrap;
+}
+.ab-body{padding:1.2rem}
+/* Rooms */
+.ab-rooms{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem}
+@media(max-width:380px){.ab-rooms{grid-template-columns:1fr}}
+.ab-room{
+  border-radius:10px;padding:.9rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.ab-room-1{background:linear-gradient(135deg,rgba(124,21,21,.07),rgba(192,80,48,.04));border:1px solid rgba(124,21,21,.18)}
+.ab-room-2{background:linear-gradient(135deg,rgba(26,92,139,.07),rgba(46,134,193,.04));border:1px solid rgba(26,92,139,.18)}
+.room-avatars{display:flex;flex-shrink:0}
+.room-info{}
+.room-lbl{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.room-names{font-size:.82rem;font-weight:700;color:var(--ink)}
+/* Address */
+.ab-addr{
+  display:flex;align-items:center;gap:.8rem;
+  background:var(--warm);border:1px solid var(--line);
+  border-radius:10px;padding:.85rem;flex-wrap:wrap;gap:.6rem;
+}
+.ab-addr-icon{font-size:1.2rem;flex-shrink:0}
+.ab-addr-text{flex:1;min-width:140px}
+.ab-addr-name{font-size:.85rem;font-weight:700;color:var(--ink)}
+.ab-addr-sub{font-size:.65rem;color:var(--muted);margin-top:.1rem}
+.map-btn{
+  display:inline-flex;align-items:center;gap:.3rem;
+  background:#1967D2;color:white;border-radius:7px;
+  padding:.4rem .85rem;font-size:.68rem;font-weight:700;
+  white-space:nowrap;border:none;transition:background .15s;
+}
+.map-btn:hover{background:#1558D0}
+
+/* ═══════════════════════════════════════════════════
+   DAY SELECTOR
+═══════════════════════════════════════════════════ */
+.day-tabs{
+  display:flex;gap:.4rem;margin-top:1.2rem;
+  overflow-x:auto;padding-bottom:.4rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.day-tabs::-webkit-scrollbar{display:none}
+.dtab{
+  flex-shrink:0;
+  background:var(--white);border:1.5px solid var(--line);
+  border-radius:10px;padding:.5rem .85rem;
+  font-size:.72rem;font-weight:600;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:.1rem;
+  transition:all .15s;
+}
+.dtab span{font-size:.58rem;font-weight:400;opacity:.7}
+.dtab:hover{border-color:var(--red);color:var(--red)}
+.dtab.active{background:var(--red);border-color:var(--red);color:white}
+.dtab.active span{opacity:.75}
+
+/* ═══════════════════════════════════════════════════
+   DAY PANEL
+═══════════════════════════════════════════════════ */
+.day-panel{display:none;animation:fadeSlide .3s ease}
+.day-panel.active{display:block}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Day header banner */
+.day-banner{
+  border-radius:14px;padding:1.2rem;
+  margin:1rem 0;
+  display:flex;align-items:flex-start;gap:1rem;
+  position:relative;overflow:hidden;
+}
+.day-banner::before{
+  content:'';position:absolute;inset:0;
+  background:inherit;border-radius:14px;
+}
+.db-num{
+  width:44px;height:44px;flex-shrink:0;
+  background:rgba(255,255,255,.2);
+  border:2px solid rgba(255,255,255,.35);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:white;
+  position:relative;z-index:1;
+}
+.db-text{position:relative;z-index:1;flex:1}
+.db-day{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.2rem}
+.db-title{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:white;line-height:1.1}
+.db-meta{font-size:.68rem;color:rgba(255,255,255,.65);margin-top:.25rem;display:flex;gap:.8rem;flex-wrap:wrap}
+.db-weather{
+  margin-left:auto;flex-shrink:0;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:8px;padding:.3rem .6rem;
+  font-size:.7rem;color:white;
+  display:flex;align-items:center;gap:.3rem;
+  position:relative;z-index:1;white-space:nowrap;
+}
+/* Day banner color variants */
+.db-1{background:linear-gradient(135deg,#1C3A5E,#2E6B9E)}
+.db-2{background:linear-gradient(135deg,#4A1010,#8B1A1A)}
+.db-3{background:linear-gradient(135deg,#1A3A1A,#2E6B2E)}
+.db-4{background:linear-gradient(135deg,#3A2A0A,#8B6B1A)}
+.db-5{background:linear-gradient(135deg,#3A1A1A,#6B2020)}
+.db-6{background:linear-gradient(135deg,#0A2A3A,#1A6B8B)}
+.db-7{background:linear-gradient(135deg,#1A2A3A,#2A4A6B)}
+
+/* ═══════════════════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════════════════ */
+.tl{display:flex;flex-direction:column;gap:0;padding-bottom:1rem}
+.tl-row{
+  display:flex;gap:0;
+  position:relative;
+}
+/* Vertical line between items */
+.tl-row:not(:last-child) .tl-line-area::after{
+  content:'';
+  position:absolute;
+  left:50%;top:32px;
+  width:1px;height:calc(100% + 1px);
+  background:var(--line);
+  transform:translateX(-50%);
+}
+.tl-line-area{
+  width:44px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  align-items:center;padding-top:12px;
+  position:relative;
+}
+.tl-time{text-align:center}
+.tl-h{font-family:'Fraunces',serif;font-size:.85rem;font-weight:700;color:var(--ink);line-height:1}
+.tl-m{font-size:.55rem;color:var(--muted);letter-spacing:.05em}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--red);margin-top:.5rem;
+  box-shadow:0 0 0 3px rgba(124,21,21,.12);
+  flex-shrink:0;
+}
+.tl-card{
+  flex:1;margin:.5rem 0 .5rem .5rem;
+  background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:.9rem 1rem;
+  transition:border-color .15s;
+}
+.tl-card:hover{border-color:rgba(124,21,21,.25)}
+.tl-head{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem;flex-wrap:wrap}
+.tl-name{font-size:.88rem;font-weight:700;color:var(--ink);line-height:1.2;flex:1;min-width:100px}
+.cat-badge{
+  display:inline-flex;align-items:center;
+  padding:.15rem .5rem;border-radius:100px;
+  font-size:.55rem;font-weight:700;letter-spacing:.05em;
+  white-space:nowrap;flex-shrink:0;
+}
+.cat-s{background:var(--red-lt);color:var(--red)}
+.cat-f{background:var(--gold-lt);color:var(--gold)}
+.cat-t{background:var(--blue-lt);color:var(--blue)}
+.cat-n{background:var(--purple-lt);color:var(--purple)}
+.cat-x{background:var(--green-lt);color:var(--green)}
+.tl-desc{font-size:.75rem;color:var(--muted);line-height:1.6;margin-bottom:.55rem}
+.tl-actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.act{
+  display:inline-flex;align-items:center;gap:.3rem;
+  padding:.22rem .6rem;border-radius:6px;
+  font-size:.62rem;font-weight:600;
+  border:1px solid;transition:all .15s;
+  white-space:nowrap;
+}
+.act-m{background:var(--blue-lt);color:var(--blue);border-color:#C5D8FF}
+.act-m:hover{background:#C5D8FF}
+.act-b{background:var(--orange-lt);color:var(--orange);border-color:#FDD5B8}
+.act-b:hover{background:#FDD5B8}
+.act-i{background:var(--green-lt);color:var(--green);border-color:#BBF7D0}
+.act-i:hover{background:#BBF7D0}
+
+/* ═══════════════════════════════════════════════════
+   PLACE CARDS (visual scene cards without photos)
+═══════════════════════════════════════════════════ */
+.scene-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:.6rem;
+  margin:.8rem 0;
+}
+@media(min-width:480px){.scene-cards{grid-template-columns:repeat(3,1fr)}}
+.scene-card{
+  border-radius:12px;overflow:hidden;
+  aspect-ratio:3/2;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;padding:.7rem;
+  position:relative;
+  cursor:default;
+}
+.scene-card::before{
+  content:'';position:absolute;inset:0;
+  background:inherit;
+}
+.scene-card-emoji{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-65%);
+  font-size:2.2rem;opacity:.7;
+}
+.scene-label{
+  position:relative;z-index:1;
+  font-size:.65rem;font-weight:700;color:white;
+  text-shadow:0 1px 4px rgba(0,0,0,.5);
+  line-height:1.2;
+}
+.scene-sub{
+  font-size:.55rem;color:rgba(255,255,255,.7);
+  text-shadow:0 1px 3px rgba(0,0,0,.5);
+  margin-top:.1rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   MAPS LIST
+═══════════════════════════════════════════════════ */
+.maps-list{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem}
+.map-row{
+  display:flex;align-items:center;gap:.75rem;
+  background:var(--white);border:1px solid var(--line);
+  border-radius:10px;padding:.75rem;
+  text-decoration:none;color:var(--ink);
+  transition:all .15s;
+}
+.map-row:hover{border-color:#4285F4;background:var(--blue-lt);transform:translateX(2px)}
+.map-day-dot{
+  width:30px;height:30px;flex-shrink:0;
+  background:var(--red);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:.72rem;font-weight:700;color:white;
+}
+.map-info{flex:1}
+.map-name{font-size:.82rem;font-weight:700;color:var(--ink)}
+.map-cat{font-size:.63rem;color:var(--muted);margin-top:.05rem}
+.map-icon{color:#4285F4;font-size:.75rem;flex-shrink:0}
+.maps-import-btn{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  background:var(--ink);color:white;
+  border-radius:10px;padding:.85rem;
+  font-size:.78rem;font-weight:700;
+  margin-top:1rem;width:100%;
+  transition:background .15s;border:none;
+}
+.maps-import-btn:hover{background:var(--red)}
+
+/* ═══════════════════════════════════════════════════
+   PACKING LIST
+═══════════════════════════════════════════════════ */
+.pack-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+  margin-top:1.2rem;
+}
+@media(max-width:400px){.pack-grid{grid-template-columns:1fr}}
+.pack-group{}
+.pack-group-title{
+  font-size:.72rem;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:.4rem;
+  margin-bottom:.7rem;padding-bottom:.5rem;
+  border-bottom:2px solid var(--warm);
+}
+.pack-ul{list-style:none;display:flex;flex-direction:column;gap:.1rem}
+.pack-li{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.3rem 0;font-size:.76rem;color:var(--body);
+  cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;
+  border-radius:4px;transition:color .12s;
+}
+.pack-li:hover{color:var(--ink)}
+.pack-li.done{color:var(--muted);text-decoration:line-through}
+.pack-box{
+  width:17px;height:17px;border-radius:4px;
+  border:1.5px solid var(--line);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;color:white;transition:all .12s;
+}
+.pack-li.done .pack-box{background:var(--red);border-color:var(--red)}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+.footer{
+  background:var(--ink);color:white;
+  padding:2rem 1.5rem;text-align:center;
+  margin-top:2rem;
+}
+.footer-title{
+  font-family:'Fraunces',serif;
+  font-size:1.3rem;font-weight:700;color:#E8B45A;
+  margin-bottom:.3rem;
+}
+.footer-sub{font-size:.72rem;opacity:.5}
+.footer-couple{
+  display:flex;justify-content:center;gap:.8rem;
+  flex-wrap:wrap;margin-top:1rem;
+}
+.fc-pill{
+  display:flex;align-items:center;gap:.4rem;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;padding:.3rem .8rem .3rem .4rem;
+  font-size:.72rem;font-weight:600;color:rgba(255,255,255,.8);
+}
+.footer-links{
+  display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;
+  margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);
+}
+.footer-link{font-size:.65rem;opacity:.4;cursor:pointer;transition:opacity .15s}
+.footer-link:hover{opacity:.8}
+
+/* ═══════════════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════════════ */
+.sep{height:1px;background:var(--line)}
+.mt-sm{margin-top:.5rem}
+.mt-md{margin-top:1rem}
+.mt-lg{margin-top:1.5rem}
+.note{
+  background:var(--warm);border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;padding:.7rem .9rem;
+  font-size:.73rem;color:var(--body);line-height:1.6;
+  margin-top:.8rem;
+}
+.note strong{color:var(--ink)}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+═══════════════════════════════════════════════════ */
+@media(min-width:600px){
+  .cover{padding:3rem 2rem 3.5rem}
+  .page{padding:0 2rem}
+}
+@media(min-width:768px){
+  .cover-stats .cs-n{font-size:1.6rem}
+  .tl-h{font-size:.95rem}
+}
+</style>
+</head>
+<body>
+<!-- ════════════════ PASSWORD SCREEN ════════════════ -->
+<div id="lockScreen" style="
+  position:fixed;inset:0;z-index:9999;
+  background:linear-gradient(155deg,#1A0A0A 0%,#3B0A0A 40%,#7C1515 70%,#B8820A 100%);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  font-family:'Plus Jakarta Sans',sans-serif;
+">
+  <!-- Deco background glow -->
+  <div style="position:absolute;inset:0;
+    background:radial-gradient(ellipse 50% 50% at 50% 60%,rgba(184,130,10,.2) 0%,transparent 70%);
+    pointer-events:none">
+  </div>
+
+  <!-- Flag -->
+  <div style="display:flex;width:52px;height:32px;border-radius:4px;overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);margin-bottom:2rem;position:relative">
+    <div style="flex:1;background:#D90012"></div>
+    <div style="flex:1;background:#0033A0"></div>
+    <div style="flex:1;background:#F2A800"></div>
+  </div>
+
+  <!-- Title -->
+  <div style="font-family:'Fraunces',serif;font-size:clamp(2rem,7vw,3.2rem);
+    font-weight:700;color:white;letter-spacing:-.03em;text-align:center;
+    line-height:.95;margin-bottom:.5rem;position:relative">
+    Αρμενία <span style="font-style:italic;color:#E8B45A">2026</span>
+  </div>
+  <div style="font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(255,255,255,.45);margin-bottom:2.5rem;position:relative">
+    21–27 Μαρτίου · Ερεβάν
+  </div>
+
+  <!-- Lock card -->
+  <div style="
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;padding:2rem 2rem 1.8rem;
+    width:min(320px,90vw);
+    backdrop-filter:blur(20px);
+    position:relative;
+  ">
+    <div style="text-align:center;margin-bottom:1.5rem">
+      <div style="font-size:1.8rem;margin-bottom:.5rem">🔒</div>
+      <div style="font-size:.75rem;font-weight:600;color:rgba(255,255,255,.7);
+        letter-spacing:.05em">Εισάγετε κωδικό πρόσβασης</div>
+    </div>
+
+    <!-- PIN dots display -->
+    <div id="pinDots" style="display:flex;justify-content:center;gap:.8rem;margin-bottom:1.5rem">
+      <div class="pin-dot" data-i="0"></div>
+      <div class="pin-dot" data-i="1"></div>
+      <div class="pin-dot" data-i="2"></div>
+      <div class="pin-dot" data-i="3"></div>
+    </div>
+
+    <!-- Numpad -->
+    <div id="numpad" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem">
+      <button class="np-btn" onclick="enterPin('1')">1</button>
+      <button class="np-btn" onclick="enterPin('2')">2</button>
+      <button class="np-btn" onclick="enterPin('3')">3</button>
+      <button class="np-btn" onclick="enterPin('4')">4</button>
+      <button class="np-btn" onclick="enterPin('5')">5</button>
+      <button class="np-btn" onclick="enterPin('6')">6</button>
+      <button class="np-btn" onclick="enterPin('7')">7</button>
+      <button class="np-btn" onclick="enterPin('8')">8</button>
+      <button class="np-btn" onclick="enterPin('9')">9</button>
+      <button class="np-btn np-clear" onclick="clearPin()">✕</button>
+      <button class="np-btn" onclick="enterPin('0')">0</button>
+      <button class="np-btn np-del" onclick="delPin()">⌫</button>
+    </div>
+
+    <!-- Error msg -->
+    <div id="pinError" style="
+      text-align:center;margin-top:1rem;
+      font-size:.72rem;color:#FF8A8A;font-weight:600;
+      opacity:0;transition:opacity .2s;min-height:1rem;
+    ">Λάθος κωδικός. Δοκιμάστε ξανά.</div>
+  </div>
+
+  <!-- Travelers hint -->
+  <div style="margin-top:1.8rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;position:relative">
+    <div style="display:flex;align-items:center;gap:.4rem;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
+      border-radius:100px;padding:.3rem .8rem .3rem .4rem;font-size:.7rem;color:rgba(255,255,255,.7)">
+      <div style="display:flex">
+        <div style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);
+          background:linear-gradient(135deg,#8B1A1A,#C05030);
+          display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:white">Π</div>
+        <div style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);
+          background:linear-gradient(135deg,#A52020,#D04040);margin-left:-6px;
+          display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:white">Α</div>
+      </div>
+      <span style="color:#e05c7a">♥</span> Παυλίνα &amp; Ανδρέας
+    </div>
+    <div style="display:flex;align-items:center;gap:.4rem;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
+      border-radius:100px;padding:.3rem .8rem .3rem .4rem;font-size:.7rem;color:rgba(255,255,255,.7)">
+      <div style="display:flex">
+        <div style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);
+          background:linear-gradient(135deg,#1A5C8B,#2E86C1);
+          display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:white">Γ</div>
+        <div style="width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.3);
+          background:linear-gradient(135deg,#1A6B8B,#2E9EC1);margin-left:-6px;
+          display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:white">Σ</div>
+      </div>
+      <span style="color:#e05c7a">♥</span> Γιώργος &amp; Σανια
+    </div>
+  </div>
+</div>
+
+<style>
+.pin-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);
+  background:transparent;
+  transition:all .15s;
+}
+.pin-dot.filled{
+  background:#E8B45A;
+  border-color:#E8B45A;
+  box-shadow:0 0 8px rgba(232,180,90,.5);
+  transform:scale(1.1);
+}
+.pin-dot.error{
+  background:#FF5A5A;border-color:#FF5A5A;
+  animation:shake .3s ease;
+}
+.np-btn{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  color:white;font-size:1.2rem;font-weight:600;
+  padding:.9rem .5rem;
+  font-family:'Fraunces',serif;
+  cursor:pointer;transition:all .12s;
+  -webkit-tap-highlight-color:transparent;
+}
+.np-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.25);transform:scale(1.04)}
+.np-btn:active{transform:scale(.95);background:rgba(255,255,255,.25)}
+.np-clear{color:#FF8A8A;font-size:.9rem;font-family:'Plus Jakarta Sans',sans-serif}
+.np-del{font-size:1rem;font-family:'Plus Jakarta Sans',sans-serif}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes unlockPulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1);opacity:0}}
+</style>
+
+<script>
+var pin = '';
+var correct = '2727';
+function enterPin(d) {
+  if (pin.length >= 4) return;
+  pin += d;
+  updateDots();
+  if (pin.length === 4) {
+    setTimeout(checkPin, 120);
+  }
+}
+function delPin() {
+  pin = pin.slice(0,-1);
+  updateDots();
+  clearError();
+}
+function clearPin() {
+  pin = '';
+  updateDots();
+  clearError();
+}
+function updateDots() {
+  document.querySelectorAll('.pin-dot').forEach(function(d,i) {
+    d.classList.toggle('filled', i < pin.length);
+    d.classList.remove('error');
+  });
+}
+function clearError() {
+  document.getElementById('pinError').style.opacity = '0';
+}
+function checkPin() {
+  if (pin === correct) {
+    // Unlock animation
+    var ls = document.getElementById('lockScreen');
+    ls.style.transition = 'opacity .5s ease, transform .5s ease';
+    ls.style.opacity = '0';
+    ls.style.transform = 'scale(1.03)';
+    setTimeout(function(){ ls.style.display = 'none'; }, 500);
+  } else {
+    // Error shake
+    var err = document.getElementById('pinError');
+    err.style.opacity = '1';
+    document.querySelectorAll('.pin-dot').forEach(function(d) {
+      d.classList.remove('filled');
+      d.classList.add('error');
+    });
+    setTimeout(function(){
+      pin = '';
+      updateDots();
+    }, 600);
+  }
+}
+</script>
+
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="cover">
+  <div class="cover-deco"></div>
+  <div class="cover-flag">
+    <div class="fr"></div><div class="fb"></div><div class="fo"></div>
+  </div>
+  <div class="cover-eyebrow">Ταξιδιωτικό Πρόγραμμα · Μάρτιος 2026</div>
+  <h1 class="cover-title">Ανακαλύψτε<br>την <em>Αρμενία</em></h1>
+  <div class="cover-sub">Ερεβάν · Garni · Geghard · Khor Virap · Areni · Λίμνη Σεβάν</div>
+  <div class="cover-stats">
+    <div class="cs"><div class="cs-n">21–27</div><div class="cs-l">Μαρτίου 2026</div></div>
+    <div class="cs"><div class="cs-n">6</div><div class="cs-l">Νύχτες</div></div>
+    <div class="cs"><div class="cs-n">4</div><div class="cs-l">Άτομα</div></div>
+    <div class="cs"><div class="cs-n">12+</div><div class="cs-l">Αξιοθέατα</div></div>
+  </div>
+</div>
+
+<!-- ════════════════ TRAVELERS STRIP ════════════════ -->
+<div class="travelers-strip">
+  <div class="travelers-lbl">Ταξιδιώτες</div>
+  <div class="couple-pill">
+    <div class="av-stack">
+      <div class="av av-red">Π</div>
+      <div class="av av-red" style="background:linear-gradient(135deg,#A52020,#D04040)">Α</div>
+    </div>
+    <span class="pill-heart">♥</span>
+    <span class="pill-names">Παυλίνα &amp; Ανδρέας</span>
+  </div>
+  <div class="couple-pill">
+    <div class="av-stack">
+      <div class="av av-blue">Γ</div>
+      <div class="av av-blue" style="background:linear-gradient(135deg,#1A6B8B,#2E9EC1)">Σ</div>
+    </div>
+    <span class="pill-heart">♥</span>
+    <span class="pill-names">Γιώργος &amp; Σανια</span>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="trip-info">✈️ <strong>Aegean Airlines</strong></div>
+  <div class="strip-divider"></div>
+  <div class="trip-info">🏠 <strong>Airbnb</strong> <span>Arami 60/47</span></div>
+</div>
+
+<!-- ════════════════ STICKY NAV ════════════════ -->
+<nav class="sticky-nav" id="mainNav">
+  <div class="sticky-nav-inner">
+    <button class="snav-btn active" onclick="goTo('overview',this)">Επισκόπηση</button>
+    <button class="snav-btn" onclick="goTo('accommodation',this)">Κατάλυμα</button>
+    <button class="snav-btn" onclick="goTo('itinerary',this)">Πρόγραμμα</button>
+    <button class="snav-btn" onclick="goTo('maps',this)">Χάρτης</button>
+    <button class="snav-btn" onclick="goTo('packing',this)">Αποσκευές</button>
+  </div>
+</nav>
+
+<!-- ════════════════ OVERVIEW ════════════════ -->
+<div class="page">
+<section class="sec" id="overview">
+  <div class="sec-tag">Επισκόπηση</div>
+  <h2 class="sec-title">Το ταξίδι<br><em>με μια ματιά</em></h2>
+  <p class="sec-sub">6 ημέρες στη χώρα με 3.000 χρόνια ιστορία — αρχαίοι ναοί, βυζαντινά μοναστήρια, κρασί 6.000 ετών και εμβληματική θέα Αραράτ.</p>
+
+  <div class="ov-grid">
+    <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ημερομηνίες</div><div class="ov-val">21–27 Μαρτίου</div><div class="ov-sub">6 νύχτες</div></div>
+    <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Πτήση</div><div class="ov-val">Aegean Airlines</div><div class="ov-sub">ATH → EVN · 2h 35m</div></div>
+    <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Airbnb</div><div class="ov-val">Arami 60/47</div><div class="ov-sub">Κέντρο Ερεβάν</div></div>
+    <div class="ov-card"><div class="ov-icon">🌡️</div><div class="ov-label">Καιρός</div><div class="ov-val">8–15°C</div><div class="ov-sub">Νύχτες: -2 έως 4°C</div></div>
+    <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Νόμισμα</div><div class="ov-val">AMD · Μετρητά</div><div class="ov-sub">1€ ≈ 430 AMD</div></div>
+    <div class="ov-card"><div class="ov-icon">🛂</div><div class="ov-label">Visa</div><div class="ov-val">Χωρίς Βίζα</div><div class="ov-sub">Ελληνικό διαβατήριο</div></div>
+  </div>
+
+  <div class="note mt-md">
+    <strong>🌡️ Τι να φορέσετε:</strong> Ο Μάρτιος στην Ερεβάν είναι δροσερός. Στρώσεις ρούχων, ζακέτα + αδιάβροχο. Νύχτες κρύες — σκούφος χρήσιμος στις εκδρομές.
+  </div>
+
+  <div class="sec-tag mt-lg">Καιρός 21–27 Μαρτίου</div>
+  <div class="weather-row">
+    <div class="wcard"><div class="wc-d">ΣΑΒ 21/3</div><div class="wc-i">⛅</div><div class="wc-h">10°</div><div class="wc-l">-2°C</div><div class="wc-note">Άφιξη</div></div>
+    <div class="wcard"><div class="wc-d">ΚΥΡ 22/3</div><div class="wc-i">🌤️</div><div class="wc-h">12°</div><div class="wc-l">0°C</div><div class="wc-note">Cascade</div></div>
+    <div class="wcard"><div class="wc-d">ΔΕΥ 23/3</div><div class="wc-i">🌥️</div><div class="wc-h">11°</div><div class="wc-l">1°C</div><div class="wc-note">Garni & Geghard</div></div>
+    <div class="wcard"><div class="wc-d">ΤΡΙ 24/3</div><div class="wc-i">🌦️</div><div class="wc-h">13°</div><div class="wc-l">2°C</div><div class="wc-note">Brandy</div></div>
+    <div class="wcard"><div class="wc-d">ΤΕΤ 25/3</div><div class="wc-i">⛅</div><div class="wc-h">14°</div><div class="wc-l">3°C</div><div class="wc-note">Khor Virap</div></div>
+    <div class="wcard"><div class="wc-d">ΠΕΜ 26/3</div><div class="wc-i">🌤️</div><div class="wc-h">15°</div><div class="wc-l">4°C</div><div class="wc-note">Σεβάν</div></div>
+    <div class="wcard"><div class="wc-d">ΠΑΡ 27/3</div><div class="wc-i">🌤️</div><div class="wc-h">15°</div><div class="wc-l">4°C</div><div class="wc-note">Αναχώρηση</div></div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ════════════════ ACCOMMODATION ════════════════ -->
+<section class="sec" id="accommodation">
+  <div class="sec-tag">Κατάλυμα ✅ Κλεισμένο</div>
+  <h2 class="sec-title">Airbnb · <em>Arami 60</em></h2>
+  <p class="sec-sub">Ολόκληρο διαμέρισμα στο κέντρο της Ερεβάν — 2 υπνοδωμάτια για τα δύο ζευγάρια.</p>
+
+  <div class="ab-block">
+    <div class="ab-top">
+      <div class="ab-top-icon">🏠</div>
+      <div>
+        <div class="ab-top-title">Airbnb · 6 Νύχτες</div>
+        <div class="ab-top-sub">Arami poghots 60, Διαμ. 47 · Ερεβάν</div>
+      </div>
+      <div class="ab-badge">✅ Κλεισμένο</div>
+    </div>
+    <div class="ab-body">
+      <div class="ab-rooms">
+        <div class="ab-room ab-room-1">
+          <div class="room-avatars">
+            <div class="av av-red" style="width:32px;height:32px;font-size:.78rem">Π</div>
+            <div class="av av-red" style="width:32px;height:32px;font-size:.78rem;margin-left:-8px;background:linear-gradient(135deg,#A52020,#D04040)">Α</div>
+          </div>
+          <div class="room-info">
+            <div class="room-lbl">Υπνοδωμάτιο 1</div>
+            <div class="room-names">Παυλίνα &amp; Ανδρέας</div>
+          </div>
+        </div>
+        <div class="ab-room ab-room-2">
+          <div class="room-avatars">
+            <div class="av av-blue" style="width:32px;height:32px;font-size:.78rem">Γ</div>
+            <div class="av av-blue" style="width:32px;height:32px;font-size:.78rem;margin-left:-8px;background:linear-gradient(135deg,#1A6B8B,#2E9EC1)">Σ</div>
+          </div>
+          <div class="room-info">
+            <div class="room-lbl">Υπνοδωμάτιο 2</div>
+            <div class="room-names">Γιώργος &amp; Σανια</div>
+          </div>
+        </div>
+      </div>
+      <div class="ab-addr">
+        <div class="ab-addr-icon">📍</div>
+        <div class="ab-addr-text">
+          <div class="ab-addr-name">Arami poghots 60, Διαμ. 47</div>
+          <div class="ab-addr-sub">Ερεβάν · ~8 λεπτά περπάτημα από Republic Square</div>
+        </div>
+        <a href="https://maps.google.com/?q=Arami+poghots+60,+Yerevan,+Armenia" target="_blank" class="map-btn">
+          🗺️ Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ════════════════ ITINERARY ════════════════ -->
+<section class="sec" id="itinerary">
+  <div class="sec-tag">Αναλυτικό Πρόγραμμα</div>
+  <h2 class="sec-title">7 Ημέρες<br><em>στην Αρμενία</em></h2>
+
+  <!-- Day tabs -->
+  <div class="day-tabs" id="dayTabs">
+    <button class="dtab active" onclick="showDay(1,this)">Ημ. 1<span>21/3</span></button>
+    <button class="dtab" onclick="showDay(2,this)">Ημ. 2<span>22/3</span></button>
+    <button class="dtab" onclick="showDay(3,this)">Ημ. 3<span>23/3</span></button>
+    <button class="dtab" onclick="showDay(4,this)">Ημ. 4<span>24/3</span></button>
+    <button class="dtab" onclick="showDay(5,this)">Ημ. 5<span>25/3</span></button>
+    <button class="dtab" onclick="showDay(6,this)">Ημ. 6<span>26/3</span></button>
+    <button class="dtab" onclick="showDay(7,this)">Ημ. 7<span>27/3</span></button>
+  </div>
+
+  <!-- ─── DAY 1 ─── -->
+  <div class="day-panel active" id="day1">
+    <div class="day-banner db-1">
+      <div class="db-num">1</div>
+      <div class="db-text">
+        <div class="db-day">Σάββατο · 21 Μαρτίου 2026</div>
+        <div class="db-title">Άφιξη 04:25 πρωί</div>
+        <div class="db-meta"><span>🛬 04:25 Αεροδρόμιο</span><span>😴 Ξεκούραση</span><span>🚶 Χαλαρή βόλτα</span><span>🍽️ Lavash</span></div>
+      </div>
+      <div class="db-weather">⛅ 10°C</div>
+    </div>
+    <!-- Scene cards -->
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#1C3A5E,#2E6B9E)">
+        <div class="scene-card-emoji">🏛️</div>
+        <div class="scene-label">Republic Square</div>
+        <div class="scene-sub">Πλατεία Δημοκρατίας</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#3A2010,#6B3A1A)">
+        <div class="scene-card-emoji">🍽️</div>
+        <div class="scene-label">Lavash Restaurant</div>
+        <div class="scene-sub">Παραδοσιακή κουζίνα</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A1A3A,#3A3A6B)">
+        <div class="scene-card-emoji">⛲</div>
+        <div class="scene-label">Show Σιντριβανιών</div>
+        <div class="scene-sub">Κάθε βράδυ · Δωρεάν</div>
+      </div>
+    </div>
+    <div class="note" style="margin:.8rem 0">
+      🌙 <strong>Πτήση αφιξης 04:25 πρωί</strong> — Η ημέρα αυτή είναι πολύ χαλαρή. Ξεκουραστείτε μετά την άφιξη και ξεκινήστε αργά το απόγευμα.
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">04:25</div><div class="tl-m">ΑΦΙ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">✈️ Zvartnots Airport (EVN)</div><span class="cat-badge cat-t">Άφιξη</span></div>
+          <div class="tl-desc">Πτήση Aegean από Αθήνα. Χωρίς visa για Έλληνες. Ταξί προς Airbnb Arami 60: ~€8 με Yandex Go app (~20 λεπτά). Αεροδρόμιο 12km από κέντρο.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.1473,44.3959&z=14" target="_blank" class="act act-m">📍 Αεροδρόμιο</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">05:30</div><div class="tl-m">ΠΡΩ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🏠 Άφιξη Airbnb — Ξεκούραση</div><span class="cat-badge cat-x">Ανάπαυση</span></div>
+          <div class="tl-desc">Άφιξη στο Arami 60/47. Αφήστε αποσκευές, ξαπλώστε. <strong>Κοιμηθείτε μέχρι τις 11:00–12:00</strong> — έχετε όλη την ημέρα μπροστά σας.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:00</div><div class="tl-m">ΜΕΣ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">☕ Αργό Πρωινό &amp; Καφές</div><span class="cat-badge cat-f">Φαγητό</span></div>
+          <div class="tl-desc">Καφέ κοντά στο διαμέρισμα ή αγορά από τοπικό mini market. Πρώτος αρμένικος καφές — αργή, χαλαρή έναρξη.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:00</div><div class="tl-m">ΑΠΟ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🚶 Εξερεύνηση γειτονιάς</div><span class="cat-badge cat-x">Βόλτα</span></div>
+          <div class="tl-desc">Αργή βόλτα στην περιοχή Arami &amp; Northern Avenue. Ανακαλύψτε τους δρόμους, τα καφέ, την ατμόσφαιρα. Χωρίς πίεση.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18019,44.51490&z=17" target="_blank" class="act act-m">📍 Northern Ave</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">16:30</div><div class="tl-m">ΑΠΟ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🏛️ Republic Square</div><span class="cat-badge cat-s">Αξιοθέατο</span></div>
+          <div class="tl-desc">Πρώτη επίσκεψη στην καρδιά της Ερεβάν. Κτίρια από ροζ tufa πέτρα, ατμόσφαιρα. Καθίστε σε καφέ και παρατηρήστε τη ζωή.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17762,44.51261&z=17" target="_blank" class="act act-m">📍 Maps</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">20:00</div><div class="tl-m">ΒΡΑ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🍽️ Βραδινό — Lavash Restaurant</div><span class="cat-badge cat-f">Εστιατόριο</span></div>
+          <div class="tl-desc">Το top παραδοσιακό εστιατόριο της Ερεβάν. Tolma, walnut pate, spas, khorovats. <strong>Κράτηση απαραίτητη!</strong></div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17912,44.51293&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="tel:+37410608800" class="act act-b">📞 608800</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">21:30</div><div class="tl-m">ΝΥΧ</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">⛲ Show Σιντριβανιών</div><span class="cat-badge cat-n">Νύχτα</span></div>
+          <div class="tl-desc">Δωρεάν show φωτός &amp; μουσικής κάθε βράδυ. Τέλειο τέλος για την πρώτη (κουρασμένη!) ημέρα.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17762,44.51261&z=17" target="_blank" class="act act-m">📍 Republic Sq.</a><a href="#" class="act act-i">ℹ️ Δωρεάν</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 2 ─── -->
+  <div class="day-panel" id="day2">
+    <div class="day-banner db-2">
+      <div class="db-num">2</div>
+      <div class="db-text">
+        <div class="db-day">Κυριακή · 22 Μαρτίου 2026</div>
+        <div class="db-title">Τέχνη &amp; Ιστορία</div>
+        <div class="db-meta"><span>🎨 Cascade</span><span>🕯️ Μνημείο Γενοκτονίας</span><span>🏛️ Μουσείο Ιστορίας</span><span>🎶 Tavern</span></div>
+      </div>
+      <div class="db-weather">🌤️ 12°C</div>
+    </div>
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#2A1A3A,#5A3A6B)">
+        <div class="scene-card-emoji">🎨</div>
+        <div class="scene-label">Cascade Complex</div>
+        <div class="scene-sub">Botero · Θέα Αραράτ</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A0A2A,#4A2A6A)">
+        <div class="scene-card-emoji">🏛️</div>
+        <div class="scene-label">Μουσείο Ιστορίας</div>
+        <div class="scene-sub">3.000+ χρόνια Αρμενία</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A1A1A,#3A3A3A)">
+        <div class="scene-card-emoji">🕯️</div>
+        <div class="scene-label">Μνημείο Γενοκτονίας</div>
+        <div class="scene-sub">Tsitsernakaberd</div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🎨 Cascade &amp; Cafesjian Center</div><span class="cat-badge cat-s">Τέχνη</span></div>
+          <div class="tl-desc">Ανεβείτε με ανελκυστήρα! Γλυπτά Botero, σύγχρονη τέχνη, πανοραμική θέα Ερεβάν και Αραράτ. Δωρεάν. Σαβ/Κυρ.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18377,44.50726&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ Δωρεάν · Σαβ-Κυρ</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🏛️ Μουσείο Ιστορίας Αρμενίας</div><span class="cat-badge cat-s">Μουσείο</span></div>
+          <div class="tl-desc">3.000+ χρόνια αρμένικης ιστορίας — από τη λίθινη εποχή ως τη σύγχρονη εποχή. Ανοιχτό Κυριακή. Εκπληκτικές συλλογές.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17725,44.51241&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ ~1.000 AMD</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🕯️ Tsitsernakaberd</div><span class="cat-badge cat-s">Μνημείο</span></div>
+          <div class="tl-desc">Μνημείο Γενοκτονίας Αρμενίων (1915). Το πιο συγκινητικό μέρος Αρμενίας. Δωρεάν. Κλειστό Δευτέρα.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.19727,44.47213&z=16" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ Δωρεάν</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">20:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🎶 Ararat Tavern — Pandok</div><span class="cat-badge cat-n">Ζωντανή Μουσική</span></div>
+          <div class="tl-desc">Παραδοσιακή αρμένικη μουσική κάθε βράδυ. Γενναιόδωρες μερίδες, κρασί Areni. <strong>Κράτηση!</strong></div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18067,44.51490&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="tel:+37441000777" class="act act-b">📞 000777</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 3 ─── -->
+  <div class="day-panel" id="day3">
+    <div class="day-banner db-3">
+      <div class="db-num">3</div>
+      <div class="db-text">
+        <div class="db-day">Δευτέρα · 23 Μαρτίου 2026</div>
+        <div class="db-title">Εκδρομή: Garni &amp; Geghard</div>
+        <div class="db-meta"><span>🏛️ Ναός Garni</span><span>⛪ UNESCO Geghard</span><span>~1h από Ερεβάν</span></div>
+      </div>
+      <div class="db-weather">🌥️ 11°C</div>
+    </div>
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#2A1A0A,#6B4A1A)">
+        <div class="scene-card-emoji">🏛️</div>
+        <div class="scene-label">Ναός Garni</div>
+        <div class="scene-sub">77 μ.Χ. · Ελληνορωμαϊκός</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A1A2A,#3A3A5A)">
+        <div class="scene-card-emoji">⛪</div>
+        <div class="scene-label">Μοναστήρι Geghard</div>
+        <div class="scene-sub">UNESCO · 4ος αιώνας</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A2A1A,#3A5A3A)">
+        <div class="scene-card-emoji">🪨</div>
+        <div class="scene-label">Basalt Columns</div>
+        <div class="scene-sub">Συμφωνία Λίθων</div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">09:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🚗 Αναχώρηση εκδρομής</div><span class="cat-badge cat-t">Transfer</span></div>
+          <div class="tl-desc">Ταξί/rental. ~€35-40 μετ' επιστροφής για 4 άτομα. Yandex Go ή κράτηση από Airbnb. 1 ώρα οδήγηση στα βουνά.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🏛️ Ναός Garni · 77 μ.Χ.</div><span class="cat-badge cat-s">Αρχαιολογία</span></div>
+          <div class="tl-desc">Μοναδικός ελληνορωμαϊκός ναός Μέσης Ανατολής. Πάνω σε γκρεμό με εκπληκτική θέα στο φαράγγι. Εξαγωνικές βασαλτικές κολόνες κάτω.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.11248,44.72921&z=16" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ €3/άτομο</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">⛪ Μοναστήρι Geghard UNESCO</div><span class="cat-badge cat-s">Μοναστήρι</span></div>
+          <div class="tl-desc">Σκαλισμένο σε βράχο τον 4ο αιώνα. Κυριακή = πιθανή λειτουργία με αρχαία ψαλμωδία. Απόκοσμη εμπειρία. Δωρεάν.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.15262,44.81352&z=16" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ UNESCO · Δωρεάν</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🥩 Khorovats στον δρόμο</div><span class="cat-badge cat-f">Φαγητό</span></div>
+          <div class="tl-desc">Τοπική ψησταριά επιστροφής. Αρμένικο BBQ + lavash + oghi. Το πιο authentic γεύμα του ταξιδιού!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 4 ─── -->
+  <div class="day-panel" id="day4">
+    <div class="day-banner db-4">
+      <div class="db-num">4</div>
+      <div class="db-text">
+        <div class="db-day">Τρίτη · 24 Μαρτίου 2026</div>
+        <div class="db-title">Brandy, Αγορές &amp; Μουσεία</div>
+        <div class="db-meta"><span>🥃 Ararat Brandy</span><span>🧶 Vernissage</span><span>📜 Matenadaran</span></div>
+      </div>
+      <div class="db-weather">🌦️ 13°C</div>
+    </div>
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#2A1A0A,#5A3A1A)">
+        <div class="scene-card-emoji">🥃</div>
+        <div class="scene-label">Ararat Brandy</div>
+        <div class="scene-sub">Ίδρυση 1887</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A1A3A,#3A3A7A)">
+        <div class="scene-card-emoji">📜</div>
+        <div class="scene-label">Matenadaran</div>
+        <div class="scene-sub">23.000 Χειρόγραφα</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A2A1A,#1A5A4A)">
+        <div class="scene-card-emoji">🕌</div>
+        <div class="scene-label">Blue Mosque</div>
+        <div class="scene-sub">18ος αιώνας</div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🥃 Εργοστάσιο Ararat Brandy</div><span class="cat-badge cat-t">Ξενάγηση</span></div>
+          <div class="tl-desc">1h ξενάγηση + γευσιγνωσία 3 brandies. Ίδρυση 1887. Ανοιχτό Δευτ-Παρ. <strong>Προ-κράτηση απαραίτητη!</strong></div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.16939,44.52212&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="tel:+37410510100" class="act act-b">📞 510100</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🧶 Vernissage Market</div><span class="cat-badge cat-x">Αγορά</span></div>
+          <div class="tl-desc">Χαλιά, κοσμήματα, σοβιετικά σουβενίρ, brandy, κρασί. <strong>Μόνο μετρητά AMD!</strong> Παζαρέψτε — οι τιμές είναι εύπλαστες.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17511,44.51474&z=17" target="_blank" class="act act-m">📍 Maps</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">📜 Matenadaran</div><span class="cat-badge cat-s">Μουσείο</span></div>
+          <div class="tl-desc">23.000+ αρχαία χειρόγραφα από τον 5ο αι. UNESCO World Heritage. Το πιο σημαντικό αρχείο χειρογράφων στον κόσμο.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18519,44.50407&z=17" target="_blank" class="act act-m">📍 Maps</a></div>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">19:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🍷 Βράδυ ελεύθερο — Wine Bar</div><span class="cat-badge cat-n">Νύχτα</span></div>
+          <div class="tl-desc">In Vino ή Kamancha Bar — αρμένικα κρασιά Areni, Karas, Zorah. Ζωντανή μουσική. Northern Avenue area.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18019,44.51490&z=17" target="_blank" class="act act-m">📍 Northern Ave</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 5 ─── -->
+  <div class="day-panel" id="day5">
+    <div class="day-banner db-5">
+      <div class="db-num">5</div>
+      <div class="db-text">
+        <div class="db-day">Τετάρτη · 25 Μαρτίου 2026</div>
+        <div class="db-title">Khor Virap &amp; Κρασί Areni</div>
+        <div class="db-meta"><span>⛪ Αραράτ 5.137μ</span><span>🍷 Areni Winery</span><span>~45λ + 1.5ω από Ερεβάν</span></div>
+      </div>
+      <div class="db-weather">⛅ 14°C</div>
+    </div>
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#3A0A0A,#8B1A1A)">
+        <div class="scene-card-emoji">⛪</div>
+        <div class="scene-label">Khor Virap</div>
+        <div class="scene-sub">Αραράτ 5.137μ</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#2A0A2A,#6B1A4A)">
+        <div class="scene-card-emoji">🍷</div>
+        <div class="scene-label">Areni Winery</div>
+        <div class="scene-sub">6.100 χρόνια οίνος</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#1A2A0A,#4A6B1A)">
+        <div class="scene-card-emoji">🏔️</div>
+        <div class="scene-label">Αραράτ</div>
+        <div class="scene-sub">Σύμβολο Αρμενίας</div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">09:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🚗 Αναχώρηση νότια</div><span class="cat-badge cat-t">Transfer</span></div>
+          <div class="tl-desc">Ταξί/rental. Khor Virap 45 λεπτά, Areni 1.5 ώρα. ~€55-65 για 4 άτομα μετ' επιστροφής.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">⛪ Khor Virap — Θέα Αραράτ</div><span class="cat-badge cat-s">Εικονικό τοπίο</span></div>
+          <div class="tl-desc">Το πιο εμβληματικό τοπίο Αρμενίας: μοναστήρι μπροστά από τον Αραράτ 5.137μ. Κατεβείτε στο υπόγειο κελί. <strong>Φέρτε κάμερα!</strong></div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=39.82340,44.53470&z=15" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ Δωρεάν</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🍷 Areni Wine Factory</div><span class="cat-badge cat-f">Κρασί</span></div>
+          <div class="tl-desc">Κοντά στο αρχαιότερο winery κόσμου (6.100 χρόνια!). Δωρεάν ξενάγηση &amp; γευσιγνωσία. Αγοράστε Karas/Zorah!</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=39.71630,45.18480&z=15" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ Δωρεάν · 9πμ-7μμ</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🥗 Μεσημεριανό χωριό Areni</div><span class="cat-badge cat-f">Φαγητό</span></div>
+          <div class="tl-desc">Τοπική ταβέρνα στην Areni — τυριά, lavash, κρασί Areni. Εξαιρετικό value. Ίσως το καλύτερο μεσημεριανό του ταξιδιού.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 6 ─── -->
+  <div class="day-panel" id="day6">
+    <div class="day-banner db-6">
+      <div class="db-num">6</div>
+      <div class="db-text">
+        <div class="db-day">Πέμπτη · 26 Μαρτίου 2026</div>
+        <div class="db-title">Εκδρομή: Λίμνη Σεβάν</div>
+        <div class="db-meta"><span>⛪ Sevanavank</span><span>🐟 Ishkhan Πέστροφα</span><span>1.900μ υψόμετρο</span></div>
+      </div>
+      <div class="db-weather">🌤️ 15°C</div>
+    </div>
+    <div class="scene-cards">
+      <div class="scene-card" style="background:linear-gradient(155deg,#0A1A2A,#1A5A7A)">
+        <div class="scene-card-emoji">🏔️</div>
+        <div class="scene-label">Λίμνη Σεβάν</div>
+        <div class="scene-sub">1.900μ · Αλπική λίμνη</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#0A2A1A,#1A6B4A)">
+        <div class="scene-card-emoji">⛪</div>
+        <div class="scene-label">Sevanavank</div>
+        <div class="scene-sub">9ος αιώνας μ.Χ.</div>
+      </div>
+      <div class="scene-card" style="background:linear-gradient(155deg,#0A1A3A,#1A3A6B)">
+        <div class="scene-card-emoji">🐟</div>
+        <div class="scene-label">Ishkhan</div>
+        <div class="scene-sub">Αρμένικη πέστροφα</div>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">08:30</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🚗 Αναχώρηση για Σεβάν</div><span class="cat-badge cat-t">Transfer</span></div>
+          <div class="tl-desc">1.5 ώρα οδήγηση. Ταξί ~€40. Ανεβαίνετε από 900μ στα 1.900μ — ο δρόμος είναι εντυπωσιακός.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.56140,45.00001&z=11" target="_blank" class="act act-m">📍 Λίμνη Σεβάν</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:30</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">⛪ Sevanavank Μοναστήρι</div><span class="cat-badge cat-s">Μοναστήρι</span></div>
+          <div class="tl-desc">9ος αι. σε χερσόνησο. ~100 σκαλιά για 360° πανοραμική θέα. Χιονισμένα βουνά παντού τον Μάρτιο — εκπληκτικό!</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.56140,45.00001&z=15" target="_blank" class="act act-m">📍 Maps</a><a href="#" class="act act-i">ℹ️ Δωρεάν</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:30</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🐟 Ishkhan — Φρέσκια Πέστροφα</div><span class="cat-badge cat-f">Ψαροταβέρνα</span></div>
+          <div class="tl-desc">Η πέστροφα που θα φάτε ποτέ. Lavash, μπύρα Gyumri. Δίπλα στη λίμνη. Μεγάλες μερίδες, χαμηλές τιμές.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">20:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🥂 Αποχαιρετιστήριο Βραδινό</div><span class="cat-badge cat-n">Γιορτή</span></div>
+          <div class="tl-desc">Ararat Tavern — ζωντανή μουσική, Ararat 10★, κρασί Karas. Γιορτάστε ένα αξέχαστο ταξίδι!</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18067,44.51490&z=17" target="_blank" class="act act-m">📍 Maps</a><a href="tel:+37441000777" class="act act-b">📞 000777</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DAY 7 ─── -->
+  <div class="day-panel" id="day7">
+    <div class="day-banner db-7">
+      <div class="db-num">7</div>
+      <div class="db-text">
+        <div class="db-day">Παρασκευή · 27 Μαρτίου 2026</div>
+        <div class="db-title">Αναχώρηση</div>
+        <div class="db-meta"><span>☕ Τελευταίο πρωινό</span><span>🛍️ Αγορές</span><span>✈️ Επιστροφή Αθήνα</span></div>
+      </div>
+      <div class="db-weather">🌤️ 15°C</div>
+    </div>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">08:30</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">☕ Τελευταίο Πρωινό</div><span class="cat-badge cat-f">Πρωινό</span></div>
+          <div class="tl-desc">Cascade Café — αρμένικος καφές + gata + Jermuk νερό. Τελευταία θέα στον Αραράτ.</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.18377,44.50726&z=17" target="_blank" class="act act-m">📍 Cascade</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">10:00</div><div class="tl-m">AM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🛍️ Τελευταίες Αγορές</div><span class="cat-badge cat-x">Αγορά</span></div>
+          <div class="tl-desc">Vernissage: Ararat Brandy 5★ ως δώρα, χαλιά, gata. Αγοράστε επιπλέον brandy στο duty-free αεροδρομίου!</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17511,44.51474&z=17" target="_blank" class="act act-m">📍 Vernissage</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">12:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">🍽️ Τελευταίο Γεύμα — Lavash</div><span class="cat-badge cat-f">Φαγητό</span></div>
+          <div class="tl-desc">Spas, harissa, khashlama. Ό,τι δεν δοκιμάσατε ακόμα. Bari Ughi! 🇦🇲</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.17912,44.51293&z=17" target="_blank" class="act act-m">📍 Lavash</a></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-line-area"><div class="tl-time"><div class="tl-h">14:00</div><div class="tl-m">PM</div></div><div class="tl-dot"></div></div>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-name">✈️ Transfer Αεροδρόμιο EVN</div><span class="cat-badge cat-t">Αναχώρηση</span></div>
+          <div class="tl-desc">3 ώρες πριν πτήση. Ταξί €8. Duty-free: Ararat Brandy 5★ από ~$12!</div>
+          <div class="tl-actions"><a href="https://maps.google.com/?q=40.1473,44.3959&z=14" target="_blank" class="act act-m">📍 Αεροδρόμιο</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section><!-- end itinerary -->
+
+<div class="sep"></div>
+
+<!-- ════════════════ MAPS ════════════════ -->
+<section class="sec" id="maps">
+  <div class="sec-tag">Google Maps</div>
+  <h2 class="sec-title">Όλα τα σημεία<br><em>σε ένα κλικ</em></h2>
+  <p class="sec-sub">Κάντε κλικ → ανοίγει Google Maps. Αποθηκεύστε ως Favorites.</p>
+
+  <div class="maps-list">
+    <a href="https://maps.google.com/?q=40.17762,44.51261&z=17" target="_blank" class="map-row"><div class="map-day-dot">1</div><div class="map-info"><div class="map-name">Republic Square</div><div class="map-cat">Πλατεία Δημοκρατίας</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.17912,44.51293&z=17" target="_blank" class="map-row"><div class="map-day-dot">1</div><div class="map-info"><div class="map-name">Lavash Restaurant</div><div class="map-cat">📞 +374 10 608800</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.18377,44.50726&z=17" target="_blank" class="map-row"><div class="map-day-dot">2</div><div class="map-info"><div class="map-name">Cascade Complex</div><div class="map-cat">Cafesjian Center · Θέα Αραράτ</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.16939,44.52212&z=17" target="_blank" class="map-row"><div class="map-day-dot">2</div><div class="map-info"><div class="map-name">Ararat Brandy Factory</div><div class="map-cat">📞 +374 10 510100 · Κλειστό Κυρ</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.19727,44.47213&z=16" target="_blank" class="map-row"><div class="map-day-dot">2</div><div class="map-info"><div class="map-name">Μνημείο Γενοκτονίας</div><div class="map-cat">Tsitsernakaberd · Δωρεάν</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.18067,44.51490&z=17" target="_blank" class="map-row"><div class="map-day-dot">2</div><div class="map-info"><div class="map-name">Ararat Tavern — Pandok</div><div class="map-cat">📞 +374 41 000777 · Ζωντανή Μουσική</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.11248,44.72921&z=16" target="_blank" class="map-row"><div class="map-day-dot">3</div><div class="map-info"><div class="map-name">Ναός Garni</div><div class="map-cat">Ελληνορωμαϊκός · 77 μ.Χ.</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.15262,44.81352&z=16" target="_blank" class="map-row"><div class="map-day-dot">3</div><div class="map-info"><div class="map-name">Μοναστήρι Geghard</div><div class="map-cat">UNESCO World Heritage</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.17511,44.51474&z=17" target="_blank" class="map-row"><div class="map-day-dot">4</div><div class="map-info"><div class="map-name">Vernissage Market</div><div class="map-cat">Μετρητά AMD μόνο!</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.18519,44.50407&z=17" target="_blank" class="map-row"><div class="map-day-dot">4</div><div class="map-info"><div class="map-name">Matenadaran</div><div class="map-cat">UNESCO Χειρόγραφα</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=39.82340,44.53470&z=15" target="_blank" class="map-row"><div class="map-day-dot">5</div><div class="map-info"><div class="map-name">Khor Virap Monastery</div><div class="map-cat">Εικονικό τοπίο · Αραράτ</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=39.71630,45.18480&z=15" target="_blank" class="map-row"><div class="map-day-dot">5</div><div class="map-info"><div class="map-name">Areni Wine Factory</div><div class="map-cat">Δωρεάν γευσιγνωσία</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.56140,45.00001&z=15" target="_blank" class="map-row"><div class="map-day-dot">6</div><div class="map-info"><div class="map-name">Sevanavank — Λίμνη Σεβάν</div><div class="map-cat">1.900μ υψόμετρο</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=Arami+poghots+60,+Yerevan,+Armenia" target="_blank" class="map-row"><div class="map-day-dot" style="background:var(--blue)">🏠</div><div class="map-info"><div class="map-name">Airbnb — Arami 60/47</div><div class="map-cat">Κατάλυμα · Κέντρο Ερεβάν</div></div><div class="map-icon">↗</div></a>
+    <a href="https://maps.google.com/?q=40.1473,44.3959&z=14" target="_blank" class="map-row"><div class="map-day-dot" style="background:var(--ink)">EVN</div><div class="map-info"><div class="map-name">Zvartnots Airport (EVN)</div><div class="map-cat">Duty-Free · Ararat Brandy</div></div><div class="map-icon">↗</div></a>
+  </div>
+
+  <a href="https://www.google.com/maps/d/create" target="_blank" class="maps-import-btn">
+    🗺️ Εισαγωγή όλων σε Google My Maps →
+  </a>
+</section>
+
+<div class="sep"></div>
+
+<!-- ════════════════ PACKING ════════════════ -->
+<section class="sec" id="packing">
+  <div class="sec-tag">Αποσκευές</div>
+  <h2 class="sec-title">Τι να <em>πάρετε</em><br>μαζί</h2>
+  <p class="sec-sub">Μάρτιος = κρύο! Κλικ για να επισημάνετε ως ετοιμασμένο.</p>
+  <div class="pack-grid">
+    <div class="pack-group">
+      <div class="pack-group-title">🧥 Ρούχα</div>
+      <ul class="pack-ul">
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Ζακέτα/Fleece</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Αδιάβροχο jacket</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Thermal εσώρουχα</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Παπούτσια περιπάτου</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Σκούφος &amp; γάντια</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Βραδινή ένδυση</li>
+      </ul>
+    </div>
+    <div class="pack-group">
+      <div class="pack-group-title">📱 Τεχνολογία</div>
+      <ul class="pack-ul">
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Smartphone + charger</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Power bank</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>App: Yandex Taxi</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Google Maps offline</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>eSIM / Beeline SIM</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Κάμερα</li>
+      </ul>
+    </div>
+    <div class="pack-group">
+      <div class="pack-group-title">📄 Έγγραφα</div>
+      <ul class="pack-ul">
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Διαβατήριο (6+ μήνες)</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Επιβεβ. Aegean Airlines</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Επιβεβ. Airbnb</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Ασφάλεια ταξιδίου</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Μετρητά EUR → AMD</li>
+      </ul>
+    </div>
+    <div class="pack-group">
+      <div class="pack-group-title">✅ Κρατήσεις</div>
+      <ul class="pack-ul">
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Aegean Airlines x4 ✅</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Airbnb Arami 60 ✅</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Lavash Restaurant</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Ararat Brandy Factory</li>
+        <li class="pack-li" onclick="tick(this)"><div class="pack-box"></div>Ararat Tavern (×2)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div><!-- end .page -->
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="footer">
+  <div class="footer-title">🇦🇲 Αρμενία 2026</div>
+  <div class="footer-sub">21–27 Μαρτίου · Aegean Airlines · Airbnb Arami 60 · Bari Ughi!</div>
+  <div class="footer-couple">
+    <div class="fc-pill">
+      <div class="av-stack">
+        <div class="av av-red" style="width:22px;height:22px;font-size:.6rem">Π</div>
+        <div class="av" style="width:22px;height:22px;font-size:.6rem;margin-left:-6px;background:linear-gradient(135deg,#A52020,#D04040)">Α</div>
+      </div>
+      Παυλίνα &amp; Ανδρέας
+    </div>
+    <div class="fc-pill">
+      <div class="av-stack">
+        <div class="av av-blue" style="width:22px;height:22px;font-size:.6rem">Γ</div>
+        <div class="av" style="width:22px;height:22px;font-size:.6rem;margin-left:-6px;background:linear-gradient(135deg,#1A6B8B,#2E9EC1)">Σ</div>
+      </div>
+      Γιώργος &amp; Σανια
+    </div>
+  </div>
+  <div class="footer-links">
+    <span class="footer-link" onclick="goTo('overview')">Επισκόπηση</span>
+    <span class="footer-link" onclick="goTo('accommodation')">Κατάλυμα</span>
+    <span class="footer-link" onclick="goTo('itinerary')">Πρόγραμμα</span>
+    <span class="footer-link" onclick="goTo('maps')">Χάρτης</span>
+    <span class="footer-link" onclick="goTo('packing')">Αποσκευές</span>
+  </div>
+</footer>
+
+<script>
+// Day tabs
+function showDay(n, btn) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.dtab').forEach(b => b.classList.remove('active'));
+  document.getElementById('day' + n).classList.add('active');
+  if (btn) btn.classList.add('active');
+  else document.querySelectorAll('.dtab')[n-1]?.classList.add('active');
+}
+// Scroll to section + activate nav
+function goTo(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = document.querySelector('.sticky-nav')?.offsetHeight || 44;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset - 8;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+// Packing tick
+function tick(li) {
+  li.classList.toggle('done');
+  li.querySelector('.pack-box').textContent = li.classList.contains('done') ? '✓' : '';
+}
+// Active nav on scroll
+const navSecs = ['overview','accommodation','itinerary','maps','packing'];
+const navBtns = document.querySelectorAll('.snav-btn');
+const stickyH = () => document.querySelector('.sticky-nav')?.offsetHeight || 44;
+window.addEventListener('scroll', () => {
+  let cur = navSecs[0];
+  navSecs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.getBoundingClientRect().top + window.scrollY - stickyH() - 20) cur = id;
+  });
+  navBtns.forEach((b, i) => b.classList.toggle('active', navSecs[i] === cur));
+}, { passive: true });
+</script>
+</body>
+</html>
