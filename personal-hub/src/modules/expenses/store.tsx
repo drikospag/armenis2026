@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { dbClear, dbDelete, dbGet, dbGetAll, dbPut, dbPutMany, metaGet, metaSet } from '../../core/db'
 import { uid } from '../../core/id'
 import { DEFAULT_CATEGORIES } from './defaults'
+import { demoExpenses, demoRecurring, isDemo } from './demo'
 import { generateDue } from './lib/recurring'
 import type { Category, Expense, ExpenseSettings, Recurring, ReceiptRecord } from './types'
 import { DEFAULT_SETTINGS } from './types'
@@ -52,11 +53,19 @@ export function ExpenseProvider({ children }: { children: ReactNode }) {
       await dbPutMany('categories', DEFAULT_CATEGORIES)
       cats = DEFAULT_CATEGORIES
     }
-    const [exp, rec, st] = await Promise.all([
+    let [exp, rec, st] = await Promise.all([
       dbGetAll<Expense>('expenses'),
       dbGetAll<Recurring>('recurring'),
       metaGet<ExpenseSettings>('expenses.settings', DEFAULT_SETTINGS),
     ])
+
+    // Η έκδοση επίδειξης ανοίγει με δείγμα, ώστε να φαίνεται τι κάνει η εφαρμογή.
+    if (isDemo() && exp.length === 0 && rec.length === 0) {
+      exp = demoExpenses()
+      rec = demoRecurring()
+      await dbPutMany('expenses', exp)
+      await dbPutMany('recurring', rec)
+    }
     setCategories(cats)
     setExpenses(exp.sort(byDateDesc))
     setRecurring(rec)

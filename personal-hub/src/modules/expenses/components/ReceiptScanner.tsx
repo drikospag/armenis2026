@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Icon } from '../../../ui/Icon'
 import { money } from '../../../core/format'
-import { releaseOcr, scanReceipt } from '../lib/ocr'
+import { ocrAvailable, releaseOcr, scanReceipt } from '../lib/ocr'
 import type { OcrProgress } from '../lib/ocr'
 import { parseReceipt } from '../lib/receiptParser'
 import type { ParsedReceipt } from '../lib/receiptParser'
@@ -20,6 +20,17 @@ export interface ScanResult {
  * και ανάγνωση των πεδίων. Δεν αποθηκεύει τίποτα μόνο του — επιστρέφει το
  * αποτέλεσμα στη φόρμα για επιβεβαίωση.
  */
+/** true όσο ελέγχεται, μετά αν η σάρωση είναι διαθέσιμη σε αυτή την εγκατάσταση. */
+export function useOcrAvailable(): boolean | null {
+  const [available, setAvailable] = useState<boolean | null>(null)
+  useEffect(() => {
+    let alive = true
+    void ocrAvailable().then((v) => { if (alive) setAvailable(v) })
+    return () => { alive = false }
+  }, [])
+  return available
+}
+
 export function ReceiptScanner({ onResult, compact = false }: { onResult: (r: ScanResult) => void; compact?: boolean }) {
   const [progress, setProgress] = useState<OcrProgress | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -27,6 +38,7 @@ export function ReceiptScanner({ onResult, compact = false }: { onResult: (r: Sc
   const fileRef = useRef<HTMLInputElement>(null)
   const cameraRef = useRef<HTMLInputElement>(null)
   const busy = progress != null && progress.stage !== 'done' && progress.stage !== 'error'
+  const available = useOcrAvailable()
 
   useEffect(() => () => { void releaseOcr() }, [])
 
@@ -56,6 +68,24 @@ export function ReceiptScanner({ onResult, compact = false }: { onResult: (r: Sc
     },
     [onResult],
   )
+
+  if (available === false) {
+    return (
+      <div
+        style={{
+          border: '1px solid var(--line)', background: 'var(--surface-sunk)',
+          borderRadius: 'var(--r)', padding: 14, display: 'flex', gap: 10, alignItems: 'flex-start',
+        }}
+      >
+        <Icon name="info" size={18} className="dim" />
+        <div className="small muted">
+          <b style={{ color: 'var(--ink)' }}>Η σάρωση αποδείξεων δεν είναι διαθέσιμη εδώ.</b>{' '}
+          Τα μοντέλα OCR (~25 MB) δεν σερβίρονται από αυτή τη φιλοξενία. Δουλεύει στην τοπική
+          εγκατάσταση, μετά από <code>npm install</code>. Μέχρι τότε καταχώρησε το έξοδο χειροκίνητα.
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div>

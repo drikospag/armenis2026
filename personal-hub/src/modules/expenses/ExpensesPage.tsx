@@ -6,13 +6,15 @@ import { ExpenseProvider, useExpenses } from './store'
 import { Analytics } from './components/Analytics'
 import { ExpenseForm } from './components/ExpenseForm'
 import { ExpenseList } from './components/ExpenseList'
+import { useOcrAvailable } from './components/ReceiptScanner'
 import { FilterBar } from './components/FilterBar'
 import { RecurringPanel } from './components/RecurringPanel'
 import { SettingsPanel } from './components/SettingsPanel'
+import { isDemo } from './demo'
 import { applyFilters, summarize } from './lib/stats'
 import type { Filters } from './lib/stats'
 import { EMPTY_FILTERS } from './lib/stats'
-import { download, toCSV } from './lib/transfer'
+import { canDownload, download, toCSV } from './lib/transfer'
 
 type Tab = 'overview' | 'list' | 'recurring' | 'settings'
 
@@ -38,6 +40,7 @@ function ExpensesInner() {
   const [tab, setTab] = useState<Tab>('overview')
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS)
   const [creating, setCreating] = useState<null | { scan: boolean }>(null)
+  const ocrReady = useOcrAvailable() !== false
 
   const filtered = useMemo(
     () => applyFilters(store.expenses, filters, store.categoryById),
@@ -56,15 +59,36 @@ function ExpensesInner() {
           <div className="h1">Έξοδα</div>
           <div className="small dim">Καθημερινή καταγραφή, αποδείξεις και ιστορικό — όλα τοπικά.</div>
         </div>
-        <button className="btn" onClick={() => setCreating({ scan: true })} title="Σάρωση απόδειξης" aria-label="Σάρωση απόδειξης">
-          <Icon name="scan" size={16} /> <span className="hide-sm">Σάρωση</span>
-        </button>
+        {ocrReady && (
+          <button className="btn" onClick={() => setCreating({ scan: true })} title="Σάρωση απόδειξης" aria-label="Σάρωση απόδειξης">
+            <Icon name="scan" size={16} /> <span className="hide-sm">Σάρωση</span>
+          </button>
+        )}
         <button className="btn btn-primary" onClick={() => setCreating({ scan: false })}>
           <Icon name="plus" size={16} /> Νέο έξοδο
         </button>
       </div>
 
       <div className="page stack">
+        {isDemo() && (
+          <div
+            className="row"
+            style={{
+              gap: 10, padding: '11px 14px', borderRadius: 'var(--r)',
+              border: '1px solid var(--line)', background: 'var(--surface-sunk)', flexWrap: 'nowrap',
+            }}
+          >
+            <Icon name="info" size={17} className="dim" />
+            <span className="small muted" style={{ flex: 1, minWidth: 0 }}>
+              <b style={{ color: 'var(--ink)' }}>Έκδοση επίδειξης με δείγμα δεδομένων.</b>{' '}
+              Τα νούμερα είναι φανταστικά. Ό,τι καταχωρείς μένει σε αυτόν τον browser.
+            </span>
+            <button className="btn btn-sm" onClick={() => void store.wipeAll()}>
+              Καθαρισμός
+            </button>
+          </div>
+        )}
+
         <div className="segmented" style={{ alignSelf: 'flex-start' }}>
           {TABS.map((t) => (
             <button key={t.id} aria-pressed={tab === t.id} onClick={() => setTab(t.id)}>
@@ -90,10 +114,12 @@ function ExpensesInner() {
               </div>
               <button
                 className="btn btn-sm"
-                disabled={filtered.length === 0}
+                disabled={filtered.length === 0 || !canDownload()}
+                title={canDownload() ? undefined : 'Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.'}
                 onClick={() => {
-                  download(`exoda-${todayISO()}.csv`, toCSV(filtered, store.categoryById), 'text/csv')
-                  toast.success(`Εξήχθησαν ${filtered.length} κινήσεις σε CSV.`)
+                  const ok = download(`exoda-${todayISO()}.csv`, toCSV(filtered, store.categoryById), 'text/csv')
+                  if (ok) toast.success(`Εξήχθησαν ${filtered.length} κινήσεις σε CSV.`)
+                  else toast.error('Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.')
                 }}
               >
                 <Icon name="download" size={15} /> Εξαγωγή
