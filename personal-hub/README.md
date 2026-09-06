@@ -11,22 +11,40 @@
 
 ## Εκκίνηση
 
+**Προϋπόθεση:** Node.js **20.19+ ή 22.12+** (κατέβασε το «LTS» από
+[nodejs.org](https://nodejs.org)). Έλεγξε με `node -v`.
+
 ```bash
-cd personal-hub
-npm install     # κατεβάζει και στήνει και τα αρχεία του OCR (~25 MB, μία φορά)
-npm run dev     # ανοίγει στο http://localhost:5180
+cd personal-hub     # ΠΡΟΣΟΧΗ: μέσα στον φάκελο personal-hub, όχι στη ρίζα του repo
+npm install         # κατεβάζει και στήνει και τα αρχεία του OCR (~25 MB, μία φορά)
+npm run dev
 ```
+
+Μετά **άνοιξε μόνος σου** τη διεύθυνση που τυπώνει το τερματικό:
+<http://localhost:5180>. Ο server μένει ανοιχτός όσο τρέχει το `npm run dev`
+(σταματάει με `Ctrl+C`).
 
 Για «κανονική» έκδοση που τρέχει πιο γρήγορα:
 
 ```bash
-npm run build
-npm run preview
+npm start           # build + server, στο ίδιο http://localhost:5180
 ```
 
 Ο φάκελος `dist/` είναι στατικός — μπορείς να τον βάλεις σε οποιονδήποτε
-web server, σε NAS, ή να τον σερβίρεις τοπικά για να τον ανοίγεις και από το
-κινητό στο ίδιο δίκτυο (`npm run preview -- --host`).
+web server ή σε NAS. Για να το ανοίγεις και από το κινητό στο ίδιο δίκτυο:
+`npm run preview -- --host`.
+
+### Αν δεν τρέχει
+
+| Τι βλέπεις | Τι φταίει |
+|---|---|
+| `npm: command not found` / `'npm' is not recognized` | Δεν υπάρχει Node.js. Εγκατέστησέ το από [nodejs.org](https://nodejs.org) και ξανάνοιξε το τερματικό. |
+| `Η έκδοση του Node.js είναι παλιά…` | Παλιό Node. Κατέβασε την LTS έκδοση και ξανατρέξε `npm install`. |
+| `Could not read package.json` / `Missing script: dev` | Είσαι σε λάθος φάκελο. Χρειάζεται `cd personal-hub` πρώτα. |
+| `Cannot find module` ή λευκή σελίδα | Δεν έτρεξε το `npm install`. Τρέξ' το και ξαναδοκίμασε. |
+| Λευκή σελίδα με διπλό κλικ στο `index.html` | Δεν ανοίγει έτσι — χρειάζεται `npm run dev` και μετά <http://localhost:5180>. |
+| `Port 5180 is in use` | Το Vite διαλέγει μόνο του άλλη θύρα· δες ποια τυπώνει και άνοιξε εκείνη. |
+| Η σάρωση απόδειξης «κολλάει» την πρώτη φορά | Φορτώνει τα μοντέλα OCR (~25 MB από τον δίσκο). Μόνο την πρώτη φορά. |
 
 ---
 
