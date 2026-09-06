@@ -1,0 +1,29 @@
+{
+  "name": "personal-hub",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Προσωπικό, modular web app — ξεκινά με τη διαχείριση εξόδων.",
+  "scripts": {
+    "postinstall": "node scripts/setup-assets.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@tesseract.js-data/ell": "^1.0.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  }
+}
