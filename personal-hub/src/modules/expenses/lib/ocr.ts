@@ -17,6 +17,27 @@ export interface OcrProgress {
 const asset = (p: string) => new URL(`tesseract/${p}`, document.baseURI).href
 
 let workerPromise: Promise<Worker> | null = null
+let availability: Promise<boolean> | null = null
+
+/**
+ * Ελέγχει αν τα αρχεία του OCR σερβίρονται πραγματικά. Επιστρέφει false όταν
+ * λείπουν — π.χ. σε φιλοξενία που δεν μπορεί να σερβίρει τα ~25 MB των μοντέλων,
+ * ή αν δεν έτρεξε το `npm install`. Έτσι η εφαρμογή το λέει καθαρά στον χρήστη
+ * αντί να αποτύχει με σφάλμα αφού διαλέξει φωτογραφία.
+ */
+export function ocrAvailable(): Promise<boolean> {
+  availability ??= (async () => {
+    try {
+      const res = await fetch(asset('lang/ell.traineddata.gz'), { method: 'HEAD' })
+      if (!res.ok) return false
+      // Κάποιοι servers απαντούν με τη σελίδα της εφαρμογής αντί για 404.
+      return !(res.headers.get('content-type') ?? '').includes('text/html')
+    } catch {
+      return false
+    }
+  })()
+  return availability
+}
 
 async function getWorker(onProgress?: (p: OcrProgress) => void): Promise<Worker> {
   if (workerPromise) return workerPromise

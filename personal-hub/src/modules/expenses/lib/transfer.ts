@@ -77,7 +77,16 @@ export function toCSV(rows: Expense[], categoryById: Map<string, Category>): str
   return '﻿' + lines.join('\r\n')
 }
 
-export function download(filename: string, content: string, mime: string) {
+/**
+ * Σε φιλοξενία μέσα σε sandbox (η σελίδα επίδειξης) οι λήψεις αρχείων
+ * μπλοκάρονται από τον browser — δεν έχει νόημα να προσποιούμαστε ότι δουλεύουν.
+ */
+export const canDownload = (): boolean =>
+  !(typeof window !== 'undefined' && (window as { __PH_DEMO__?: boolean }).__PH_DEMO__ === true)
+
+/** Επιστρέφει false όταν η λήψη δεν επιτρέπεται σε αυτό το περιβάλλον. */
+export function download(filename: string, content: string, mime: string): boolean {
+  if (!canDownload()) return false
   const blob = new Blob([content], { type: `${mime};charset=utf-8` })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
@@ -87,4 +96,5 @@ export function download(filename: string, content: string, mime: string) {
   a.click()
   a.remove()
   setTimeout(() => URL.revokeObjectURL(url), 1000)
+  return true
 }

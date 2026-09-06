@@ -6,7 +6,7 @@ import { SERIES_VARS } from '../../../ui/charts'
 import { money, todayISO } from '../../../core/format'
 import { uid } from '../../../core/id'
 import { useExpenses } from '../store'
-import { buildBackup, download, parseBackup, toCSV } from '../lib/transfer'
+import { buildBackup, canDownload, download, parseBackup, toCSV } from '../lib/transfer'
 import { parseAmount } from './ExpenseForm'
 import type { Category, Kind } from '../types'
 import { KIND_LABEL, PAYMENT_LABEL, VAT_RATES } from '../types'
@@ -152,23 +152,25 @@ export function SettingsPanel() {
         <div className="card-pad row" style={{ gap: 8 }}>
           <button
             className="btn"
+            disabled={!canDownload()}
+            title={canDownload() ? undefined : 'Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.'}
             onClick={() => {
-              download(
-                `exoda-${todayISO()}.csv`,
-                toCSV(store.expenses, store.categoryById),
-                'text/csv',
-              )
-              toast.success('Το CSV κατέβηκε — έτοιμο για τον λογιστή.')
+              const ok = download(`exoda-${todayISO()}.csv`, toCSV(store.expenses, store.categoryById), 'text/csv')
+              if (ok) toast.success('Το CSV κατέβηκε — έτοιμο για τον λογιστή.')
+              else toast.error('Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.')
             }}
           >
             <Icon name="download" size={16} /> Εξαγωγή CSV
           </button>
           <button
             className="btn"
+            disabled={!canDownload()}
+            title={canDownload() ? undefined : 'Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.'}
             onClick={() => {
               const backup = buildBackup(store.expenses, store.categories, store.recurring, store.settings)
-              download(`personal-hub-backup-${todayISO()}.json`, JSON.stringify(backup, null, 2), 'application/json')
-              toast.success('Το αντίγραφο ασφαλείας κατέβηκε.')
+              const ok = download(`personal-hub-backup-${todayISO()}.json`, JSON.stringify(backup, null, 2), 'application/json')
+              if (ok) toast.success('Το αντίγραφο ασφαλείας κατέβηκε.')
+              else toast.error('Η λήψη αρχείων δεν επιτρέπεται σε αυτή τη σελίδα. Δουλεύει κανονικά στην τοπική εγκατάσταση.')
             }}
           >
             <Icon name="download" size={16} /> Αντίγραφο ασφαλείας (JSON)

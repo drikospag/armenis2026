@@ -46,8 +46,8 @@ export function amountsIn(line: string): number[] {
 
 const TOTAL_KEYWORDS: { re: RegExp; weight: number }[] = [
   { re: /ΓΕΝΙΚΟ\s*ΣΥΝΟΛΟ|ΤΕΛΙΚΟ\s*(ΣΥΝΟΛΟ|ΠΟΣΟ)|ΠΛΗΡΩΤΕΟ|ΣΥΝΟΛΟ\s*ΠΛΗΡΩΜΗΣ|ΠΟΣΟ\s*ΠΛΗΡΩΜΗΣ/, weight: 5 },
-  { re: /(?<![Α-Ω])ΣΥΝΟΛΟ(?![Α-Ω])|\bTOTAL\b|ΣΥΝ\.?\s*ΑΞΙΑ|ΣΥΝΟΛΙΚΗ?\s*ΑΞΙΑ/, weight: 4 },
-  { re: /(?<![Α-Ω])(ΑΞΙΑ|ΠΟΣΟ|ΧΡΕΩΣΗ)(?![Α-Ω])|\bAMOUNT\b/, weight: 2 },
+  { re: /(?<![\u0391-\u03A9])ΣΥΝΟΛΟ(?![\u0391-\u03A9])|\bTOTAL\b|ΣΥΝ\.?\s*ΑΞΙΑ|ΣΥΝΟΛΙΚΗ?\s*ΑΞΙΑ/, weight: 4 },
+  { re: /(?<![\u0391-\u03A9])(ΑΞΙΑ|ΠΟΣΟ|ΧΡΕΩΣΗ)(?![\u0391-\u03A9])|\bAMOUNT\b/, weight: 2 },
 ]
 /** Γραμμές που δεν πρέπει ποτέ να θεωρηθούν «σύνολο». */
 const TOTAL_BLOCKERS = /ΡΕΣΤΑ|ΜΕΤΡΗΤΑ|ΚΑΡΤΑ|ΠΡΟΚΑΤΑΒΟΛΗ|ΥΠΟΛΟΙΠΟ|ΚΑΘΑΡΗ\s*ΑΞΙΑ|ΠΡΟ\s*ΦΠΑ|ΑΞΙΑ\s*ΧΩΡΙΣ/
@@ -142,7 +142,7 @@ export function parseReceipt(rawText: string): ParsedReceipt {
   }
 
   /* ── Αριθμός παραστατικού ───────────────────────────────── */
-  const doc = allText.match(/(?:ΑΡ\.?\s*(?:ΑΠΟΔΕΙΞΗΣ|ΤΙΜΟΛΟΓΙΟΥ|ΠΑΡΑΣΤΑΤΙΚΟΥ)|Α\/Α|ΑΡΙΘΜΟΣ)\s*[:\-]?\s*([Α-ΩA-Z0-9\-\/]{1,20})/)
+  const doc = allText.match(/(?:ΑΡ\.?\s*(?:ΑΠΟΔΕΙΞΗΣ|ΤΙΜΟΛΟΓΙΟΥ|ΠΑΡΑΣΤΑΤΙΚΟΥ)|Α\/Α|ΑΡΙΘΜΟΣ)\s*[:\-]?\s*([\u0391-\u03A9A-Z0-9\-\/]{1,20})/)
   if (doc) result.docNumber = doc[1]
 
   /* ── Επωνυμία ───────────────────────────────────────────── */
@@ -150,7 +150,7 @@ export function parseReceipt(rawText: string): ParsedReceipt {
     const line = lines[i]
     const u = upper[i]
     if (MERCHANT_NOISE.test(u)) continue
-    const letters = (u.match(/[Α-ΩA-Z]/g) ?? []).length
+    const letters = (u.match(/[\u0391-\u03A9A-Z]/g) ?? []).length
     if (letters < 4) continue
     if (letters / u.length < 0.55) continue
     result.merchant = titleCase(line)
@@ -173,7 +173,7 @@ function titleCase(s: string): string {
     .map((w, i) => {
       const original = s.split(/\s+/)[i] ?? ''
       // Συντομογραφίες (Α.Ε., Ο.Ε., ΙΚΕ) μένουν κεφαλαίες.
-      if (/^[Α-ΩA-Z.&]+$/.test(original) && (/[.&]/.test(original) || original.length <= 3)) return original
+      if (/^[\u0391-\u03A9A-Z.&]+$/.test(original) && (/[.&]/.test(original) || original.length <= 3)) return original
       return w.length > 2 ? w[0].toLocaleUpperCase('el-GR') + w.slice(1) : w.toLocaleUpperCase('el-GR')
     })
     .join(' ')

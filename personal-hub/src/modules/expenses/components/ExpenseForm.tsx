@@ -6,7 +6,7 @@ import { money, round2, todayISO } from '../../../core/format'
 import { useExpenses } from '../store'
 import { guessCategory } from '../lib/receiptParser'
 import { netFromGross, vatFromGross } from '../lib/recurring'
-import { ReceiptScanner, ScanSummary } from './ReceiptScanner'
+import { ReceiptScanner, ScanSummary, useOcrAvailable } from './ReceiptScanner'
 import type { ScanResult } from './ReceiptScanner'
 import type { Expense, Kind, PaymentMethod } from '../types'
 import { KIND_ICON, KIND_LABEL, PAYMENT_LABEL, VAT_RATES } from '../types'
@@ -39,6 +39,7 @@ export function ExpenseForm({ initial, startWithScan = false, onClose }: Props) 
   const [showScanner, setShowScanner] = useState(startWithScan)
   const [saving, setSaving] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const ocrReady = useOcrAvailable() !== false
 
   const categories = useMemo(
     () => store.categories.filter((c) => !c.hidden && (c.scope === kind || c.scope === 'both')),
@@ -158,7 +159,7 @@ export function ExpenseForm({ initial, startWithScan = false, onClose }: Props) 
       <div className="stack" style={{ gap: 16 }}>
         {!editing && showScanner && <ReceiptScanner onResult={applyScan} />}
 
-        {!showScanner && !receiptPreview && !editing && (
+        {ocrReady && !showScanner && !receiptPreview && !editing && (
           <button type="button" className="btn" onClick={() => setShowScanner(true)} style={{ alignSelf: 'flex-start' }}>
             <Icon name="scan" size={16} /> Σάρωση απόδειξης
           </button>

@@ -9,9 +9,9 @@ export const num = (n: number) => NUM.format(n || 0)
 export const pct = (n: number) => PCT.format(n || 0)
 
 /** Συμπαγής μορφή για μεγάλα νούμερα σε άξονες: 1,2κ € · 12,4κ € */
+const COMPACT = new Intl.NumberFormat('el-GR', { maximumFractionDigits: 1 })
 export function compactEur(n: number): string {
-  const a = Math.abs(n)
-  if (a >= 1000) return `${NUM.format(n / 1000).replace(/,00$/, '')}κ €`
+  if (Math.abs(n) >= 1000) return `${COMPACT.format(n / 1000)}κ €`
   return `${Math.round(n)} €`
 }
 
