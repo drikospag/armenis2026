@@ -6,7 +6,7 @@
  */
 
 const DB_NAME = 'personal-hub'
-const DB_VERSION = 1
+const DB_VERSION = 2
 
 interface StoreDef {
   name: string
@@ -29,6 +29,7 @@ const SCHEMA: StoreDef[] = [
   { name: 'recurring', keyPath: 'id' },
   { name: 'receipts', keyPath: 'id' },
   { name: 'meta', keyPath: 'key' },
+  { name: 'gym_logs', keyPath: 'id', indexes: [{ name: 'date', keyPath: 'date' }] },
 ]
 
 let dbPromise: Promise<IDBDatabase> | null = null

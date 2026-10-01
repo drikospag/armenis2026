@@ -2,13 +2,14 @@ import { Icon } from '../../ui/Icon'
 import { navigate } from '../../core/router'
 import { MONTHS_EL } from '../../core/format'
 import { ExpensesWidget } from '../expenses/ExpensesWidget'
+import { GymWidget } from '../gym/GymWidget'
 import { MODULES } from '../../core/registry'
 
 export function DashboardPage() {
   const now = new Date()
   const hour = now.getHours()
   const greeting = hour < 5 ? 'Καλό ξημέρωμα' : hour < 12 ? 'Καλημέρα' : hour < 18 ? 'Καλησπέρα' : 'Καλό βράδυ'
-  const others = MODULES.filter((m) => m.id !== 'dashboard' && m.id !== 'expenses')
+  const others = MODULES.filter((m) => !['dashboard', 'expenses', 'gym'].includes(m.id))
 
   return (
     <>
@@ -27,6 +28,7 @@ export function DashboardPage() {
       <div className="page stack">
         <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'start' }}>
           <ExpensesWidget onOpen={() => navigate('expenses')} />
+          <GymWidget onOpen={() => navigate('gym')} />
 
           <div className="card">
             <div className="card-head">

@@ -1,6 +1,7 @@
 import type { AppModule } from './types'
 import { dashboardModule } from '../modules/dashboard'
 import { expensesModule } from '../modules/expenses'
+import { gymModule } from '../modules/gym'
 
 /**
  * Το μητρώο των modules.
@@ -14,6 +15,7 @@ import { expensesModule } from '../modules/expenses'
 export const MODULES: AppModule[] = [
   dashboardModule,
   expensesModule,
+  gymModule,
 ]
 
 export function findModule(id: string): AppModule {
