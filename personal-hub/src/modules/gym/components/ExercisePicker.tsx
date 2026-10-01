@@ -3,8 +3,10 @@ import { Modal } from '../../../ui/components'
 import { EXERCISES, EXERCISE_BY_ID } from '../data/exercises'
 import { EQUIPMENT_BY_ID } from '../data/equipment'
 import { alternatives, isAllowed } from '../lib/generator'
+import { useGym } from '../store'
 import type { Exercise, Muscle, Profile } from '../types'
 import { LEVEL_LABEL, MUSCLE_LABEL } from '../types'
+import { EquipmentArt } from './EquipmentArt'
 
 /**
  * Επιλογή άσκησης. Με `replacing` δείχνει πρώτα τις εναλλακτικές για το ίδιο
@@ -57,6 +59,8 @@ export function ExercisePicker({ profile, replacing, onPick, onClose }: {
 }
 
 function ExerciseRow({ ex, onClick, highlight }: { ex: Exercise; onClick: () => void; highlight: boolean }) {
+  const { photos } = useGym()
+  const main = ex.eq[0]?.split('|')[0]
   const eq = ex.eq.map((g) => g.split('|').map((id) => EQUIPMENT_BY_ID.get(id)?.name ?? id).join(' ή ')).join(' + ')
   return (
     <button
@@ -66,16 +70,21 @@ function ExerciseRow({ ex, onClick, highlight }: { ex: Exercise; onClick: () => 
         border: `1px solid ${highlight ? 'var(--accent)' : 'var(--line)'}`, background: 'var(--surface)',
       }}
     >
-      <div className="row" style={{ justifyContent: 'space-between', gap: 8 }}>
-        <b>{ex.name}</b>
-        <span className="small dim">{ex.en}</span>
-      </div>
-      <div className="small muted">
-        {MUSCLE_LABEL[ex.primary]}
-        {ex.secondary?.length ? ` + ${ex.secondary.map((m) => MUSCLE_LABEL[m]).join(', ')}` : ''}
-        {' · '}{eq || 'Βάρος σώματος'}
-        {ex.level !== 'beginner' && ` · από ${LEVEL_LABEL[ex.level]}`}
-      </div>
+      <span className="row" style={{ gap: 10, flexWrap: 'nowrap' }}>
+        {main ? <EquipmentArt id={main} photo={photos[main]} size="sm" label={EQUIPMENT_BY_ID.get(main)?.name ?? ''} /> : <span className="eq-art eq-art-sm" />}
+        <span style={{ flex: 1, minWidth: 0 }}>
+          <span className="row" style={{ justifyContent: 'space-between', gap: 8 }}>
+            <b>{ex.name}</b>
+            <span className="small dim">{ex.en}</span>
+          </span>
+          <span className="small muted" style={{ display: 'block' }}>
+            {MUSCLE_LABEL[ex.primary]}
+            {ex.secondary?.length ? ` + ${ex.secondary.map((m) => MUSCLE_LABEL[m]).join(', ')}` : ''}
+            {' · '}{eq || 'Βάρος σώματος'}
+            {ex.level !== 'beginner' && ` · από ${LEVEL_LABEL[ex.level]}`}
+          </span>
+        </span>
+      </span>
     </button>
   )
 }

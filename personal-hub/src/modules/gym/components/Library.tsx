@@ -1,5 +1,8 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Icon } from '../../../ui/Icon'
+import { useToast } from '../../../ui/Toast'
+import { useGym } from '../store'
+import { EquipmentArt } from './EquipmentArt'
 import { EQUIPMENT, EQUIPMENT_CAT_LABEL } from '../data/equipment'
 import { EXERCISES } from '../data/exercises'
 import { isAllowed } from '../lib/generator'
@@ -8,6 +11,7 @@ import { CARDIO_LABEL, JOINT_LABEL, LEVEL_LABEL, MUSCLE_LABEL } from '../types'
 
 /** Κατάλογος μηχανημάτων: τι κάνει το καθένα και ποιες ασκήσεις γίνονται εκεί. */
 export function Library({ profile }: { profile: Profile | null }) {
+  const { photos } = useGym()
   const [q, setQ] = useState('')
   const [muscle, setMuscle] = useState<Muscle | ''>('')
   const [open, setOpen] = useState<string | null>(null)
@@ -61,7 +65,7 @@ export function Library({ profile }: { profile: Profile | null }) {
                 return (
                   <div key={e.id} style={{ borderTop: i ? '1px solid var(--line)' : 0, opacity: owned ? 1 : 0.55 }}>
                     <button className="lib-row" onClick={() => setOpen(isOpen ? null : e.id)} aria-expanded={isOpen}>
-                      <span className="lib-ico"><Icon name={cat === 'cardio' ? 'run' : 'dumbbell'} size={17} /></span>
+                      <EquipmentArt id={e.id} photo={photos[e.id]} size="sm" label={e.name} />
                       <span style={{ flex: 1, minWidth: 0 }}>
                         <span style={{ display: 'block', fontWeight: 600 }}>{e.name}</span>
                         <span className="small dim" style={{ display: 'block' }}>{e.desc}</span>
@@ -71,6 +75,7 @@ export function Library({ profile }: { profile: Profile | null }) {
                     </button>
                     {isOpen && (
                       <div className="lib-more">
+                        <PhotoBlock equipment={e} />
                         {cat === 'cardio' ? <CardioHelp id={e.id as keyof typeof CARDIO_LABEL} /> : exs.map((x) => (
                           <ExerciseInfo key={x.id} ex={x} profile={profile} />
                         ))}
@@ -129,4 +134,39 @@ const CARDIO_TIPS: Record<string, string[]> = {
 
 function CardioHelp({ id }: { id: string }) {
   return <ul className="list small">{(CARDIO_TIPS[id] ?? []).map((t) => <li key={t}>{t}</li>)}</ul>
+}
+
+/** Μεγάλη εικόνα του μηχανήματος, με δυνατότητα να βάλεις φωτογραφία από το δικό σου γυμναστήριο. */
+function PhotoBlock({ equipment }: { equipment: Equipment }) {
+  const { photos, setPhoto, removePhoto } = useGym()
+  const toast = useToast()
+  const input = useRef<HTMLInputElement>(null)
+  const photo = photos[equipment.id]
+  return (
+    <div className="stack" style={{ gap: 8 }}>
+      <EquipmentArt id={equipment.id} photo={photo} size="lg" label={equipment.name} />
+      <div className="row" style={{ gap: 6 }}>
+        <input
+          ref={input} id={`photo-${equipment.id}`} type="file" accept="image/*" capture="environment" hidden
+          onChange={(ev) => {
+            const f = ev.target.files?.[0]
+            ev.target.value = ''
+            if (!f) return
+            setPhoto(equipment.id, f)
+              .then(() => toast.success('Η φωτογραφία αποθηκεύτηκε.'))
+              .catch(() => toast.error('Δεν αποθηκεύτηκε η φωτογραφία. Δοκίμασε μια εικόνα JPG ή PNG.'))
+          }}
+        />
+        <button className="btn btn-sm" onClick={() => input.current?.click()}>
+          <Icon name="image" size={14} /> {photo ? 'Άλλαξε φωτογραφία' : 'Βάλε δική σου φωτογραφία'}
+        </button>
+        {photo && (
+          <button className="btn btn-sm btn-ghost" onClick={() => void removePhoto(equipment.id)}>
+            <Icon name="trash" size={14} /> Πίσω στο σχέδιο
+          </button>
+        )}
+      </div>
+      {!photo && <span className="small dim">Βγάλε φωτογραφία το μηχάνημα στο γυμναστήριό σου για να το αναγνωρίζεις αμέσως. Μένει μόνο σε αυτή τη συσκευή.</span>}
+    </div>
+  )
 }

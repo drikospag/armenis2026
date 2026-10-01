@@ -13,7 +13,7 @@ export function PrintPlan({ plan, week }: { plan: Plan; week: number }) {
     <div className="print-only">
       <h1 style={{ fontSize: 20, marginBottom: 4 }}>Πρόγραμμα γυμναστηρίου — Εβδομάδα {week}: {w.label}</h1>
       <p style={{ fontSize: 12, marginBottom: 12 }}>
-        {LEVEL_LABEL[plan.profile.level]} · {GOAL_LABEL[plan.profile.goal]} · {SPLIT_NAME(plan.profile.days.length, plan.profile.level, plan.profile.goal)} · {w.hint}
+        {LEVEL_LABEL[plan.profile.level]} · {GOAL_LABEL[plan.profile.goal]} · {SPLIT_NAME(plan.profile.days.length, plan.profile.level, plan.profile.goal, plan.profile.split)} · {w.hint}
       </p>
       {plan.days.map((raw) => {
         const d = applyWeek(raw, week)
@@ -39,7 +39,7 @@ export function PrintPlan({ plan, week }: { plan: Plan; week: number }) {
                       <td>{pe.sets} × {pe.reps}</td>
                       <td>{pe.restSec}″</td>
                       <td>{pe.rpe}</td>
-                      <td style={{ width: '28%' }} />
+                      <td style={{ width: '28%' }}>{pe.kg ? `${pe.kg} kg` : ''}</td>
                     </tr>
                   ))}
                 </tbody>

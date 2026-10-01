@@ -3,7 +3,7 @@ import { uid } from '../../../core/id'
 import { EXERCISES, EXERCISE_BY_ID } from '../data/exercises'
 import type {
   CardioBlock, CardioKind, CardioMachine, DayKind, Exercise, Goal, Level, Muscle, Pattern,
-  Plan, PlanDay, PlanExercise, Profile,
+  Plan, PlanDay, PlanExercise, Profile, Routine, SplitStyle,
 } from '../types'
 
 /* ── Τυχαιότητα με seed, ώστε το ίδιο προφίλ να βγάζει το ίδιο πρόγραμμα ── */
@@ -182,11 +182,89 @@ const T: Record<string, DayTemplate> = {
     slots: [['core'], ['core'], ['core'], ['glute_iso']],
     mobility: ['Κυκλικές κινήσεις αστραγάλων & ισχίων ×10', 'Αιωρήσεις ποδιών ×10/πόδι', 'Cat-cow ×8'],
   },
+
+  /* Μία ή δύο μυϊκές ομάδες τη μέρα */
+  chest: {
+    title: 'Στήθος', kind: 'workout', focus: ['chest', 'triceps'],
+    slots: [['hpush'], ['hpush'], ['chest_iso'], ['hpush'], ['chest_iso'], ['core']],
+    mobility: MOB_UPPER,
+  },
+  back: {
+    title: 'Πλάτη', kind: 'workout', focus: ['back', 'biceps'],
+    slots: [['vpull'], ['hpull'], ['vpull', 'hpull'], ['hpull'], ['reardelt'], ['core']],
+    mobility: MOB_UPPER,
+  },
+  shoulders: {
+    title: 'Ώμοι', kind: 'workout', focus: ['shoulders'],
+    slots: [['vpush'], ['delt_iso'], ['reardelt'], ['vpush', 'delt_iso'], ['delt_iso'], ['reardelt']],
+    mobility: MOB_UPPER,
+  },
+  arms: {
+    title: 'Χέρια (δικέφαλοι & τρικέφαλοι)', kind: 'workout', focus: ['biceps', 'triceps'],
+    slots: [['biceps'], ['triceps'], ['biceps'], ['triceps'], ['biceps'], ['triceps']],
+    mobility: MOB_UPPER,
+  },
+  glutes: {
+    title: 'Γλουτοί & οπίσθιοι', kind: 'workout', focus: ['glutes', 'hamstrings', 'adductors'],
+    slots: [['hinge'], ['lunge'], ['glute_iso'], ['ham_iso'], ['hinge'], ['adductor', 'glute_iso'], ['calves']],
+    mobility: MOB_LOWER, lowerBody: true,
+  },
+  core: {
+    title: 'Κοιλιακοί & κορμός', kind: 'workout', focus: ['core'],
+    slots: [['core'], ['core'], ['core'], ['core'], ['core']],
+    mobility: ['Cat-cow ×8', 'Περιστροφές θωρακικής ×8/πλευρά', 'Γέφυρες γλουτών ×15'],
+  },
+  chest_tri: {
+    title: 'Στήθος & τρικέφαλοι', kind: 'workout', focus: ['chest', 'triceps'],
+    slots: [['hpush'], ['hpush'], ['chest_iso'], ['hpush', 'chest_iso'], ['triceps'], ['triceps']],
+    mobility: MOB_UPPER,
+  },
+  back_bi: {
+    title: 'Πλάτη & δικέφαλοι', kind: 'workout', focus: ['back', 'biceps'],
+    slots: [['vpull'], ['hpull'], ['vpull', 'hpull'], ['reardelt'], ['biceps'], ['biceps']],
+    mobility: MOB_UPPER,
+  },
+  legs_shoulders: {
+    title: 'Πόδια & ώμοι', kind: 'workout', focus: ['quads', 'hamstrings', 'shoulders'],
+    slots: [['squat'], ['hinge'], ['vpush'], ['lunge'], ['delt_iso'], ['ham_iso'], ['reardelt'], ['calves']],
+    mobility: MOB_FULL, lowerBody: true,
+  },
+  shoulders_core: {
+    title: 'Ώμοι & κορμός', kind: 'workout', focus: ['shoulders', 'core'],
+    slots: [['vpush'], ['delt_iso'], ['reardelt'], ['vpush', 'delt_iso'], ['core'], ['core']],
+    mobility: MOB_UPPER,
+  },
 }
 
+/** Πρότυπα που μπορεί να διαλέξει ο χρήστης για δικό του πρόγραμμα, με τη σειρά που εμφανίζονται. */
+export const ROUTINE_TEMPLATES: { id: string; label: string; hint: string }[] = [
+  { id: 'legs', label: 'Πόδια', hint: 'Καθίσματα, άρσεις, προβολές, μηχανήματα ποδιών, γάμπες' },
+  { id: 'back', label: 'Πλάτη', hint: 'Τροχαλία, κωπηλατικές, έλξεις, οπίσθιοι ώμοι' },
+  { id: 'chest', label: 'Στήθος', hint: 'Πιέσεις επίπεδες και κεκλιμένες, ανοίγματα' },
+  { id: 'shoulders', label: 'Ώμοι', hint: 'Πιέσεις ώμων, πλάγιες, οπίσθιοι' },
+  { id: 'arms', label: 'Χέρια', hint: 'Δικέφαλοι και τρικέφαλοι εναλλάξ' },
+  { id: 'glutes', label: 'Γλουτοί & οπίσθιοι', hint: 'Hip thrust, RDL, απαγωγοί, κάμψεις' },
+  { id: 'core', label: 'Κοιλιακοί & κορμός', hint: 'Σανίδες, τροχαλία, μηχάνημα κοιλιακών' },
+  { id: 'chest_tri', label: 'Στήθος & τρικέφαλοι', hint: 'Κλασικός συνδυασμός ώθησης' },
+  { id: 'back_bi', label: 'Πλάτη & δικέφαλοι', hint: 'Κλασικός συνδυασμός έλξης' },
+  { id: 'upper_a', label: 'Πάνω σώμα', hint: 'Στήθος, πλάτη, ώμοι, χέρια σε μία μέρα' },
+  { id: 'lower_a', label: 'Κάτω σώμα', hint: 'Όλο το πόδι και ο κορμός' },
+  { id: 'full_a', label: 'Ολόσωμο', hint: 'Μία άσκηση για κάθε βασική κίνηση' },
+]
+
 /** Η διάσπαση της εβδομάδας ανάλογα με το πλήθος ημερών, το επίπεδο και τον στόχο. */
-export function splitFor(days: number, level: Level, goal: Goal): string[] {
+export function splitFor(days: number, level: Level, goal: Goal, style: SplitStyle = 'auto'): string[] {
   const beg = level === 'beginner'
+  if (style === 'muscle') {
+    switch (days) {
+      case 1: return ['full_a']
+      case 2: return ['upper_a', 'lower_a']
+      case 3: return ['chest_tri', 'back_bi', 'legs_shoulders']
+      case 4: return ['chest_tri', 'back_bi', 'legs', 'shoulders_core']
+      case 5: return ['chest', 'back', 'legs', 'shoulders', 'arms']
+      default: return ['chest', 'back', 'legs', 'shoulders', 'arms', 'glutes']
+    }
+  }
   switch (days) {
     case 1: return ['full_a']
     case 2: return ['full_a', 'full_b']
@@ -203,8 +281,9 @@ export function splitFor(days: number, level: Level, goal: Goal): string[] {
   }
 }
 
-export const SPLIT_NAME = (days: number, level: Level, goal: Goal): string => {
-  const s = splitFor(days, level, goal)
+export const SPLIT_NAME = (days: number, level: Level, goal: Goal, style: SplitStyle = 'auto'): string => {
+  const s = splitFor(days, level, goal, style)
+  if (style === 'muscle' && days >= 3) return s.map((id) => T[id].title.replace(/ \(.*\)/, '')).join(' / ')
   if (s.every((x) => x.startsWith('full'))) return 'Ολόσωμο πρόγραμμα'
   if (s.includes('push') && s.includes('upper_a')) return 'Πάνω/Κάτω + Ώθηση/Έλξη/Πόδια'
   if (s.includes('push')) return 'Ώθηση / Έλξη / Πόδια ×2'
@@ -249,7 +328,7 @@ export function mondayOf(d: Date): string {
 export function generatePlan(profile: Profile, seed = Math.floor(Math.random() * 1e9)): Plan {
   const rand = rng(seed)
   const days = [...profile.days].sort((a, b) => a - b)
-  const split = splitFor(days.length, profile.level, profile.goal)
+  const split = splitFor(days.length, profile.level, profile.goal, profile.split)
   const cardioMachines = availableCardio(profile)
   const warmMachine: CardioMachine | undefined =
     profile.equipment.includes('treadmill') ? 'treadmill' : cardioMachines[0]
@@ -413,4 +492,44 @@ export function dayMinutes(day: PlanDay): number {
   const cardio = day.cardio.reduce((s, c) => s + c.minutes, 0)
   const extra = (day.warmup ? day.warmup.minutes : 0) + (day.mobility.length ? 3 : 0) + 4
   return Math.round(ex + cardio + extra)
+}
+
+/* ── Δικά σου προγράμματα (routines) ─────────────────────────────────── */
+
+/** Γεμίζει ένα πρόγραμμα μυϊκής ομάδας με ασκήσεις που ταιριάζουν στο προφίλ — χωρίς όριο χρόνου. */
+export function buildRoutine(templateId: string, profile: Profile, seed = Math.floor(Math.random() * 1e9)): PlanExercise[] {
+  const tpl = T[templateId]
+  if (!tpl) return []
+  const rand = rng(seed)
+  const used = new Set<string>()
+  const out: PlanExercise[] = []
+  for (const slot of tpl.slots) {
+    const pick = pickFor(slot, profile, used, used, rand)
+    if (!pick) continue
+    used.add(pick.id)
+    out.push(prescribe(pick, profile.goal, profile.level))
+  }
+  return out
+}
+
+/** Βάζει ένα δικό σου πρόγραμμα σε μια μέρα της εβδομάδας, κρατώντας ζέσταμα και καρδιο αν υπάρχουν. */
+export function dayFromRoutine(day: PlanDay, routine: Routine, profile: Profile): PlanDay {
+  const tpl = T[routine.template]
+  const focus = [...new Set(routine.exercises.map((pe) => EXERCISE_BY_ID.get(pe.exerciseId)?.primary).filter(Boolean))] as Muscle[]
+  const wasWorkout = day.kind === 'workout' || day.kind === 'cardio'
+  const warm: CardioMachine | undefined = profile.equipment.includes('treadmill') ? 'treadmill' : availableCardio(profile)[0]
+  const lower = focus.some((m) => ['quads', 'hamstrings', 'glutes', 'adductors', 'calves'].includes(m))
+  const upper = focus.some((m) => ['chest', 'back', 'shoulders', 'biceps', 'triceps'].includes(m))
+  const mobility = tpl?.mobility ?? (lower && upper ? MOB_FULL : lower ? MOB_LOWER : MOB_UPPER)
+  return {
+    ...day,
+    kind: 'workout',
+    title: routine.name,
+    focus,
+    warmup: day.warmup ?? (warm ? { machine: warm, kind: 'warmup', minutes: 5 } : undefined),
+    mobility,
+    exercises: routine.exercises.map((pe) => ({ ...pe })),
+    cardio: wasWorkout ? day.cardio : [],
+    cooldown: cooldownFor({ title: routine.name, kind: 'workout', focus, slots: [], mobility, lowerBody: lower }),
+  }
 }

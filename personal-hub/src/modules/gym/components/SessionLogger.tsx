@@ -1,29 +1,30 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Modal } from '../../../ui/components'
 import { Icon } from '../../../ui/Icon'
 import { useToast } from '../../../ui/Toast'
 import { todayISO } from '../../../core/format'
 import { EXERCISE_BY_ID } from '../data/exercises'
 import { cardioProtocol } from '../lib/cardio'
-import { applyWeek } from '../lib/progression'
 import { lastPerformance } from '../lib/stats'
 import { useGym } from '../store'
-import type { CardioLog, LogEntry, Plan } from '../types'
+import type { CardioLog, LogEntry, PlanDay, Profile } from '../types'
 import { CARDIO_LABEL, WEEKDAYS } from '../types'
 
 const FEEL = ['Πολύ εύκολη', 'Εύκολη', 'Κανονική', 'Δύσκολη', 'Εξαντλητική']
 
 /** Καταγραφή προπόνησης: κιλά/επαναλήψεις ανά σετ, χρονόμετρο διαλείμματος, καρδιο. */
-export function SessionLogger({ plan, weekday, week, onClose }: {
-  plan: Plan
+export function SessionLogger({ profile, day, weekday, week, routineId, onClose }: {
+  profile: Profile
+  /** Η μέρα με την πρόοδο της εβδομάδας ήδη εφαρμοσμένη — ή ένα δικό σου πρόγραμμα. */
+  day: PlanDay
   weekday: number
   week: number
+  routineId?: string
   onClose: () => void
 }) {
   const store = useGym()
   const toast = useToast()
-  const day = useMemo(() => applyWeek(plan.days[weekday], week), [plan, weekday, week])
-  const ctx = { level: plan.profile.level, limitations: plan.profile.limitations, age: plan.profile.age }
+  const ctx = { level: profile.level, limitations: profile.limitations, age: profile.age }
 
   const [date, setDate] = useState(todayISO())
   const [entries, setEntries] = useState<LogEntry[]>(() =>
@@ -32,7 +33,7 @@ export function SessionLogger({ plan, weekday, week, onClose }: {
       return {
         exerciseId: pe.exerciseId,
         target: `${pe.sets} × ${pe.reps}`,
-        sets: Array.from({ length: pe.sets }, () => ({ kg: last?.kg ?? null, reps: null, done: false })),
+        sets: Array.from({ length: pe.sets }, () => ({ kg: last?.kg ?? pe.kg ?? null, reps: null, done: false })),
       }
     }),
   )
@@ -87,6 +88,7 @@ export function SessionLogger({ plan, weekday, week, onClose }: {
       durationMin: minutes,
       feel,
       notes: notes.trim(),
+      routineId,
     })
     toast.success('Η προπόνηση καταγράφηκε. Μπράβο!')
     onClose()
@@ -97,7 +99,7 @@ export function SessionLogger({ plan, weekday, week, onClose }: {
   return (
     <Modal
       title={day.title}
-      subtitle={`${WEEKDAYS[weekday]} · εβδομάδα ${week} του κύκλου`}
+      subtitle={routineId ? 'Δικό σου πρόγραμμα' : `${WEEKDAYS[weekday]} · εβδομάδα ${week} του κύκλου`}
       onClose={onClose}
       width={760}
       footer={

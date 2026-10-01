@@ -11,6 +11,7 @@ import { GymProvider, useGym } from './store'
 import { DayDetail } from './components/DayDetail'
 import { History } from './components/History'
 import { Library } from './components/Library'
+import { Routines } from './components/Routines'
 import { PrintPlan } from './components/PrintPlan'
 import { SessionLogger } from './components/SessionLogger'
 import { WeekView } from './components/WeekView'
@@ -18,10 +19,11 @@ import { Wizard } from './components/Wizard'
 import type { Plan, Profile } from './types'
 import { GOAL_LABEL, LEVEL_LABEL } from './types'
 
-type Tab = 'plan' | 'library' | 'history' | 'profile'
+type Tab = 'plan' | 'routines' | 'library' | 'history' | 'profile'
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
-  { id: 'plan', label: 'Πρόγραμμα', icon: 'calendar' },
+  { id: 'plan', label: 'Εβδομάδα', icon: 'calendar' },
+  { id: 'routines', label: 'Τα προγράμματά μου', icon: 'list' },
   { id: 'library', label: 'Μηχανήματα', icon: 'dumbbell' },
   { id: 'history', label: 'Πρόοδος', icon: 'trend' },
   { id: 'profile', label: 'Προφίλ', icon: 'settings' },
@@ -88,6 +90,7 @@ function GymInner() {
         )}
 
         {plan && tab === 'plan' && <PlanTab plan={plan} />}
+        {plan && tab === 'routines' && <Routines plan={plan} />}
         {plan && tab === 'library' && <Library profile={plan.profile} />}
         {plan && tab === 'history' && <History />}
         {plan && tab === 'profile' && (
@@ -217,7 +220,7 @@ function PlanTab({ plan }: { plan: Plan }) {
               <span className="badge">{GOAL_LABEL[plan.profile.goal]}</span>
               <span className="badge">{plan.profile.sessionMinutes}′ / προπόνηση</span>
             </div>
-            <div className="h2">{SPLIT_NAME(plan.profile.days.length, plan.profile.level, plan.profile.goal)}</div>
+            <div className="h2">{SPLIT_NAME(plan.profile.days.length, plan.profile.level, plan.profile.goal, plan.profile.split)}</div>
           </div>
           <div className="row tnum small muted" style={{ gap: 16 }}>
             <span><b style={{ color: 'var(--ink)', fontSize: '1.1rem' }}>{totals.sessions}</b> προπονήσεις</span>
@@ -241,7 +244,15 @@ function PlanTab({ plan }: { plan: Plan }) {
       <WeekView plan={plan} week={week} selected={selected} onSelect={setSelected} logs={store.logs} />
       <DayDetail plan={plan} weekday={selected} week={week} onStart={() => setLogging(selected)} />
 
-      {logging != null && <SessionLogger plan={plan} weekday={logging} week={week} onClose={() => setLogging(null)} />}
+      {logging != null && (
+        <SessionLogger
+          profile={plan.profile}
+          day={applyWeek(plan.days[logging], week)}
+          weekday={logging}
+          week={week}
+          onClose={() => setLogging(null)}
+        />
+      )}
     </div>
   )
 }

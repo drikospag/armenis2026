@@ -53,7 +53,11 @@ export interface Profile {
   limitations: Joint[]
   age?: number
   weightKg?: number
+  /** «auto»: ολόσωμο / πάνω-κάτω / PPL ανάλογα με τις μέρες· «muscle»: μία-δύο μυϊκές ομάδες τη μέρα. */
+  split?: SplitStyle
 }
+
+export type SplitStyle = 'auto' | 'muscle'
 
 export type CardioKind = 'warmup' | 'liss' | 'hiit' | 'tempo' | 'recovery'
 
@@ -69,6 +73,20 @@ export interface PlanExercise {
   reps: string
   restSec: number
   rpe: string
+  /** Κιλά-στόχος που όρισε ο χρήστης (προαιρετικά). */
+  kg?: number | null
+  note?: string
+}
+
+/** Δικό σου πρόγραμμα για μία μυϊκή ομάδα ή μέρα (π.χ. «Πόδια»), με σειρά ασκήσεων και δοσολογία. */
+export interface Routine {
+  id: string
+  name: string
+  /** Το πρότυπο από το οποίο ξεκίνησε (chest, back, legs…) ή 'custom'. */
+  template: string
+  exercises: PlanExercise[]
+  createdAt: number
+  updatedAt: number
 }
 
 export type DayKind = 'workout' | 'cardio' | 'active' | 'rest'
@@ -126,6 +144,7 @@ export interface WorkoutLog {
   feel: number | null
   notes: string
   createdAt: number
+  routineId?: string
 }
 
 /* ── Ετικέτες ─────────────────────────────────────────────────────────── */

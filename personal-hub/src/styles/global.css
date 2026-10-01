@@ -468,6 +468,47 @@ a { color: inherit; text-decoration: none; }
 }
 .rest-bar .btn { background: transparent; border-color: color-mix(in srgb, var(--on-accent) 60%, transparent); color: var(--on-accent); }
 
+/* Σχέδια / φωτογραφίες μηχανημάτων */
+.eq-art {
+  display: grid; place-items: center; flex: none; overflow: hidden;
+  background: var(--surface-sunk); border-radius: var(--r-sm);
+}
+.eq-art svg { width: 100%; height: 100%; }
+.eq-art img { width: 100%; height: 100%; object-fit: cover; }
+.eq-art-sm { width: 64px; height: 44px; padding: 3px; }
+.eq-art-sm:has(img) { padding: 0; }
+.eq-art-md { width: 100%; aspect-ratio: 3 / 2; padding: 8px; }
+.eq-art-md:has(img), .eq-art-lg:has(img) { padding: 0; }
+.eq-art-lg { width: 100%; max-width: 420px; aspect-ratio: 3 / 2; padding: 14px; border-radius: var(--r); }
+.eq-frame { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.eq-pad { fill: var(--accent-wash); stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.eq-plate { fill: var(--ink-3); }
+.eq-belt { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+.eq-cable { stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.eq-accent { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; }
+.eq-ground { stroke: var(--line-strong); stroke-width: 1.5; }
+.eq-band { fill: none; stroke: var(--series-2); stroke-width: 5; }
+.eq-band-2 { stroke: var(--series-3); }
+
+.eq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 8px; }
+.eq-tile {
+  display: flex; flex-direction: column; gap: 6px; padding: 6px 6px 8px; text-align: left; position: relative;
+  border: 1.5px solid var(--line); border-radius: var(--r); background: var(--surface);
+  font-size: .8125rem; font-weight: 560; line-height: 1.25;
+}
+.eq-tile[aria-pressed='true'] { border-color: var(--accent); }
+.eq-tile[aria-pressed='false'] { opacity: .55; }
+.eq-tile[aria-pressed='false'] .eq-art { filter: grayscale(1); }
+.eq-tile .eq-check {
+  position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--accent); color: var(--on-accent);
+}
+
+.routine-ex { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: var(--r); }
+.dose { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.dose .input, .dose .select { min-height: 34px; padding: 5px 8px; }
+@media (max-width: 560px) { .dose { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 .print-only { display: none; }
 @media print {
   body:has(.print-only) .page, body:has(.print-only) .backdrop, .toasts { display: none !important; }

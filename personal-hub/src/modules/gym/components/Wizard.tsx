@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Icon } from '../../../ui/Icon'
+import { useGym } from '../store'
+import { EquipmentArt } from './EquipmentArt'
 import { EQUIPMENT, EQUIPMENT_CAT_LABEL, EQUIPMENT_PRESETS } from '../data/equipment'
 import { EXERCISES } from '../data/exercises'
 import { DEFAULT_DAYS, SPLIT_NAME, isAllowed } from '../lib/generator'
@@ -30,6 +32,7 @@ export function Wizard({
   submitLabel?: string
 }) {
   const [p, setP] = useState<Profile>(initial ?? DEFAULT_PROFILE)
+  const { photos } = useGym()
   const set = <K extends keyof Profile>(k: K, v: Profile[K]) => setP((cur) => ({ ...cur, [k]: v }))
   const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v])
 
@@ -77,11 +80,22 @@ export function Wizard({
         </div>
         {daysOk ? (
           <div className="small muted">
-            Διάσπαση: <b style={{ color: 'var(--ink)' }}>{SPLIT_NAME(p.days.length, p.level, p.goal)}</b> · {p.days.length} προπονήσεις την εβδομάδα
+            Διάσπαση: <b style={{ color: 'var(--ink)' }}>{SPLIT_NAME(p.days.length, p.level, p.goal, p.split)}</b> · {p.days.length} προπονήσεις την εβδομάδα
           </div>
         ) : (
           <div className="small" style={{ color: 'var(--critical)' }}>Διάλεξε από 1 έως 6 μέρες — μία τουλάχιστον μέρα ξεκούρασης χρειάζεται.</div>
         )}
+
+        <div className="field">
+          <span className="label">Πώς να μοιραστούν οι μύες στην εβδομάδα</span>
+          <div className="segmented">
+            <button aria-pressed={(p.split ?? 'auto') === 'auto'} onClick={() => set('split', 'auto')}>Αυτόματα (ολόσωμο / πάνω-κάτω)</button>
+            <button aria-pressed={p.split === 'muscle'} onClick={() => set('split', 'muscle')}>Ανά μυϊκή ομάδα (στήθος, πλάτη, πόδια…)</button>
+          </div>
+          {p.split === 'muscle' && (
+            <span className="small dim">Κάθε μέρα δουλεύει μία ή δύο ομάδες με περισσότερες ασκήσεις. Ταιριάζει καλύτερα σε 3+ μέρες.</span>
+          )}
+        </div>
 
         <div className="field" style={{ maxWidth: 360 }}>
           <span className="label">Διάρκεια κάθε προπόνησης</span>
@@ -93,7 +107,7 @@ export function Wizard({
         </div>
       </Section>
 
-      <Section n={4} title="Μηχανήματα του γυμναστηρίου σου" hint="Ξετσέκαρε ό,τι δεν υπάρχει. Το πρόγραμμα θα χρησιμοποιήσει μόνο τα υπόλοιπα.">
+      <Section n={4} title="Μηχανήματα του γυμναστηρίου σου" hint="Πάτα για να βγάλεις ό,τι δεν υπάρχει στο γυμναστήριό σου. Το πρόγραμμα θα χρησιμοποιήσει μόνο τα υπόλοιπα.">
         <div className="row" style={{ gap: 6 }}>
           {EQUIPMENT_PRESETS.map((pr) => (
             <button key={pr.id} className="btn btn-sm" onClick={() => set('equipment', pr.ids)}>{pr.label}</button>
@@ -102,16 +116,17 @@ export function Wizard({
         {groups.map(({ cat, items }) => (
           <div key={cat} className="stack" style={{ gap: 8 }}>
             <div className="h3">{EQUIPMENT_CAT_LABEL[cat]}</div>
-            <div className="row" style={{ gap: 6 }}>
+            <div className="eq-grid">
               {items.map((e) => (
                 <button
                   key={e.id}
-                  className="chip"
+                  className="eq-tile"
                   title={e.desc}
                   aria-pressed={p.equipment.includes(e.id)}
                   onClick={() => set('equipment', toggle(p.equipment, e.id))}
                 >
-                  {p.equipment.includes(e.id) && <Icon name="check" size={13} />}
+                  <EquipmentArt id={e.id} photo={photos[e.id]} label={e.name} />
+                  {p.equipment.includes(e.id) && <span className="eq-check"><Icon name="check" size={12} /></span>}
                   {e.name}
                 </button>
               ))}

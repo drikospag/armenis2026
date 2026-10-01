@@ -10,6 +10,8 @@ import { useGym } from '../store'
 import type { Plan } from '../types'
 import { DAY_KIND_COLOR, DAY_KIND_LABEL, MUSCLE_LABEL, WEEKDAYS } from '../types'
 import { CardioCard } from './CardioCard'
+import { DoseEditor } from './DoseEditor'
+import { EquipmentArt } from './EquipmentArt'
 import { ExercisePicker } from './ExercisePicker'
 
 export function DayDetail({ plan, weekday, week, onStart }: {
@@ -86,6 +88,7 @@ export function DayDetail({ plan, weekday, week, onStart }: {
                 const ex = EXERCISE_BY_ID.get(pe.exerciseId)
                 if (!ex) return null
                 const last = lastPerformance(store.logs, ex.id)
+                const mainEq = ex.eq[0]?.split('|')[0]
                 const isOpen = open === i
                 return (
                   <div key={`${pe.exerciseId}-${i}`} className="ex-row">
@@ -99,12 +102,17 @@ export function DayDetail({ plan, weekday, week, onStart }: {
                         </span>
                       </span>
                       <span className="ex-dose tnum">
-                        <b>{pe.sets} × {pe.reps}</b>
+                        <b>{pe.sets} × {pe.reps}{pe.kg ? ` · ${pe.kg} kg` : ''}</b>
                         <span className="small dim">{pe.restSec}″ διάλ. · {pe.rpe}</span>
                       </span>
                     </button>
                     {isOpen && (
                       <div className="ex-more">
+                        {mainEq && (
+                          <div style={{ maxWidth: 240 }}>
+                            <EquipmentArt id={mainEq} photo={store.photos[mainEq]} label={EQUIPMENT_BY_ID.get(mainEq)?.name ?? ''} />
+                          </div>
+                        )}
                         <ul className="list">{ex.cues.map((c) => <li key={c}>{c}</li>)}</ul>
                         <div className="small muted">
                           Μύες: {MUSCLE_LABEL[ex.primary]}
@@ -115,6 +123,15 @@ export function DayDetail({ plan, weekday, week, onStart }: {
                             Τελευταία φορά ({last.date.split('-').reverse().join('/')}): <b className="tnum">{last.summary}</b>
                           </div>
                         )}
+                        <div className="no-print stack" style={{ gap: 4 }}>
+                          <DoseEditor
+                            pe={base.exercises[i] ?? pe}
+                            timed={ex.timed}
+                            idPrefix={`day-${weekday}-${i}`}
+                            onChange={(patch) => void store.updateExercise(weekday, i, patch)}
+                          />
+                          {week > 2 && <span className="small dim">Ορίζεις τη βάση· στην εβδομάδα {week} τα σετ προσαρμόζονται αυτόματα.</span>}
+                        </div>
                         <div className="row no-print" style={{ gap: 6 }}>
                           <button className="btn btn-sm" onClick={() => setPicker({ replace: i })}>
                             <Icon name="refresh" size={14} /> Αλλαγή
