@@ -3,6 +3,7 @@ import { ConfirmDialog } from '../../ui/components'
 import { Icon } from '../../ui/Icon'
 import { useToast } from '../../ui/Toast'
 import { formatDate } from '../../core/format'
+import { isDemo } from '../expenses/demo'
 import { cardioProtocol } from './lib/cardio'
 import { SPLIT_NAME, dayMinutes } from './lib/generator'
 import { WEEKS, applyWeek, currentWeek, cycleNumber, todayIndex } from './lib/progression'
@@ -53,9 +54,12 @@ function GymInner() {
         </div>
         {plan && tab === 'plan' && (
           <>
-            <button className="btn" onClick={() => window.print()} title="Εκτύπωση εβδομάδας" aria-label="Εκτύπωση">
+            {/* Η σελίδα επίδειξης τρέχει σε πλαίσιο που δεν επιτρέπει εκτύπωση. */}
+            {!isDemo() && (
+              <button className="btn" onClick={() => window.print()} title="Εκτύπωση εβδομάδας" aria-label="Εκτύπωση">
               <Icon name="print" size={16} /> <span className="hide-sm">Εκτύπωση</span>
             </button>
+            )}
             <button className="btn" onClick={() => setConfirm({ kind: 'reshuffle' })} title="Ίδιο προφίλ, άλλες ασκήσεις" aria-label="Νέα παραλλαγή">
               <Icon name="refresh" size={16} /> <span className="hide-sm">Παραλλαγή</span>
             </button>
